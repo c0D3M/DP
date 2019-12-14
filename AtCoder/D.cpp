@@ -11,9 +11,6 @@ int main(int argc, char*argv[])
 	int items[n][k];
 	for (int i =0; i< n ; i++)
 		cin >> items[i][0] >> items[i][1];
-	
-	//Sort the items by weights
-	
 	vector<vector<unsigned long long>> dp(k+1, vector<unsigned long long>(n+1, 0));
 	
 	for (int i=1; i<=k; i++) // Iterate over the knapsack weight
