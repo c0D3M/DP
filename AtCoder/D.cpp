@@ -8,7 +8,7 @@ int main(int argc, char*argv[])
 	
 	int n, k;
 	cin >>n>>k;
-	int items[n][k];
+	int items[n][2];
 	for (int i =0; i< n ; i++)
 		cin >> items[i][0] >> items[i][1];
 	vector<vector<unsigned long long>> dp(k+1, vector<unsigned long long>(n+1, 0));
