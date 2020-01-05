@@ -2,43 +2,49 @@
 #include <algorithm>
 
 using namespace std;
-const int MAX = 1e9 + 7;
+const int MOD = 1e9 + 7;
+int add(int x, int y) {
+	x += y;
+	if (x >= MOD) return x - MOD;
+	return x;
+}
+int sub(int x, int y) {
+	x -= y;
+	if (x < 0) return x + MOD;
+	return x;
+}
 int main(int argc, char*argv[])
 {
 	int N, K;
 	cin >> N >> K;
-	vector<int> a(N+1);
-	sort(a.begin(), a.end());
+	vector<int> a(N+1, 0);
 	vector<vector<pair<int, int>>> dp(N+1, vector<pair<int, int>>(K+1, make_pair(0, 0)));
 	for (int i = 1; i <= N; ++i)
 		cin >> a[i];
 	
-	for (int i = min(a[1],K) ; i >= 0; --i)
-	{dp[1][i].first = 1;dp[1][i].second = (dp[1][i].first + dp[1][i+1].second)%MAX;}
-	
-	for (int i = 2 ; i <= N; ++i) //child loop
+	for (int i=0; i<=K ; ++i)
 	{
-		for (int j = K; j >= 0 ; --j) // candy loop
-		{
-			int left = a[i] > j ? 0: j-a[i];
-			
-			if(dp[i-1][left].first)
-			{
-				if(j)
-				{
-					dp[i][j].first += (dp[i-1][left].second)%MAX;
-					if(a[i]-j)
-					{
-						dp[i][j].first = (dp[i][j].first - dp[i-1][K-(a[i]-j)+1].second + MAX)%MAX;
-						if(dp[i][j].first<0)
-							dp[i][j].first += MAX;
-					}
-				}
-				else
-					dp[i][j].first = 1;
-				dp[i][j].second = (dp[i][j].first + dp[i][j+1].second)%MAX;
-			}
-		}
+		dp[0][i].first = 1;
+		dp[0][i].second = 1;
 	}
-	cout << dp[N][K].first;
+		
+	for (int i = 1 ; i <= N; ++i) //child loop
+	{
+		for(int j = 0; j <= K; ++j)
+        {
+            int left = j, right = (j - a[i] - 1);
+
+            dp[i][j].first = dp[i - 1][left].second;
+
+            if(right >= 0)
+            {
+                dp[i][j].first = sub(dp[i][j].first , dp[i - 1][right].second);
+            }
+			if(j)
+				dp[i][j].second = add(dp[i][j].first, dp[i][j-1].second);
+			else
+				dp[i][j].second = dp[i][j].first;
+        }
+	}
+	cout << dp[N][K].first%MOD;
 }
