@@ -3,8 +3,8 @@
 using namespace std;
 typedef struct
 {
-    bool visited;
-    bool found;
+    bool visited; // whether this cell is viisted or not.
+    bool found;   // this will be set true if we found a path to destination via this cell.
     int steps;
     int obs;
 }N;
@@ -18,19 +18,28 @@ public:
     {
         if(r<1 || r> m || c<1|| c>n || o >K)
             return false;
-		int x = G[r-1][c-1] ? 1 : 0;
-        if(dp[m][n].visited && s > dp[m][n].steps)
+	int x = G[r-1][c-1] ? 1 : 0;
+        // If we already found a cheaper solution and current steps is greater than that
+	// their is no use of exploring that node deeper as we only get worser solution than what we have.
+	if(dp[m][n].visited && s > dp[m][n].steps)
             return false;
+	
+	 // Under certain scenario we will revisit an already visited node.
         if(dp[r][c].visited)
         {
-			if(r==c && r==1)
-				return false;
+	    // if we reached begining ; return 
+	    if(r==c && r==1)
+		return false;
+	    // If we found a cheaper path 
+            // or we found an exact same path but with smaller obstacle
             if ( ( s < dp[r][c].steps) || (s==dp[r][c].steps && !dp[r][c].found && o < dp[r][c].obs))
             {
                 dp[r][c].obs = o;
                 dp[r][c].steps = s;
                 dp[r][c].found = solve(r, c+1, o+x, s+1) | solve(r+1, c, o+x, s+1) | solve(r, c-1, o+x, s+1) | solve(r-1, c, o+x, s+1) ;
             }
+	    // If we got to a costlier path and obstacle are smaller that exisiting and their hasnt been any solution yet.
+	    // because their is a possibility of finding a longer path with few obstacle to the destination.
             else if(s > dp[r][c].steps && o < dp[r][c].obs && !dp[r][c].found)
             {
                 dp[r][c].obs = o;
@@ -40,13 +49,16 @@ public:
         }
         else
         {
+	   // Not yet visited, so traverse right, down, left, up.
             dp[r][c].visited = true;
             dp[r][c].obs = o;
             dp[r][c].steps = s;
             dp[r][c].found = solve(r, c+1, o+x, s+1) | solve(r+1, c, o+x, s+1) | solve(r, c-1, o+x, s+1) | solve(r-1, c, o+x, s+1) ;
         }
+	    
+	// Reached destination
         if(r==m && c==n)
-			return true;
+	    return true;
         else
             return dp[r][c].found;
     
