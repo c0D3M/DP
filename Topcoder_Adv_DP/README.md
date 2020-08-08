@@ -21,3 +21,8 @@ This can checked , sort both of them and if they are equal, transformation is po
 Calculate the cost and recurse by incrementing offset.  
 dp state will be at each offset position.  
 
+2. [ZigZag](https://community.topcoder.com/stat?c=problem_statement&pm=1259&rd=4493)  
+We need to find length of Longest subsequence where number **difference** alternate +ve , -ve.  
+DP State: At every index of array, we can either have +ve or -ve.  so DP[n][2].  
+At every index check if number is higher than previous, if yes use previous -ve index.  
+if number is lesser, use the previos index higher.  
