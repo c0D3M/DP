@@ -21,8 +21,31 @@ This can checked , sort both of them and if they are equal, transformation is po
 Calculate the cost and recurse by incrementing offset.  
 dp state will be at each offset position.  
 
-2. [ZigZag](https://community.topcoder.com/stat?c=problem_statement&pm=1259&rd=4493)  
+3. [ZigZag](https://community.topcoder.com/stat?c=problem_statement&pm=1259&rd=4493)  
 We need to find length of Longest subsequence where number **difference** alternate +ve , -ve.  
 DP State: At every index of array, we can either have +ve or -ve.  so DP[n][2].  
 At every index check if number is higher than previous, if yes use previous -ve index.  
 if number is lesser, use the previos index higher.  
+
+3. [FanFailure](https://community.topcoder.com/stat?c=problem_statement&pm=2235&rd=5070&rm=&cr=8527113)  
+Couln't come up DP solution.  
+
+4. [maxDonations](https://community.topcoder.com/stat?c=problem_statement&pm=2402)  
+Same as House Robber problem on Leetcode.  
+Houses are placed in circle and if ith house is picked i-1 and i+1 cant be. And we have to find max donation.  
+In this problem, start can be from i=0 or i=1. So caculate dp array of both and return the maximum one.
+dp[i] = max(dp[i-1], nums[i] + dp[i-2]).  Either dont take donation from current house, which would mean take donation from i-1 or  
+take donation from i and then we are allowed to take from i-2 as well.  
+So take the max of them.  
+
+5. [VocaloidsAndSongs](https://community.topcoder.com/stat?c=problem_statement&pm=12989&rd=15842&rm=&cr=23027795)  
+Slightly tricky description,  
+Key point, in each album set, all 3 singer must contribute to full capacity, only then it is counted as combination.  
+"The number of songs sang by Gumi, Ia, and Mayu must be gumi, ia, and mayu, respectively."  
+Sanity: if s > a+b+c , then no combination possible. return 0.  
+Base condition: if s==0 , check all 3 singers exhausted there quota ? if yes return 1 , i.e. this is a valid combination else 0.  
+DP state: dp[s][a][b][c] , songs to be sang, a, b, c singer quota.  
+From each state, you can go a has quota , b has quota , c has quota, either 2 of them can sing same cong, all 3 can sing same song.  
+Just recursively call and memoize each state.  
+
+
