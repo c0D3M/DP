@@ -27,7 +27,13 @@ then we increment left half by2 and decrement right by 2 and keep doingt left !=
 Before recurse check if dp result is available or not.  
 
 
-4. [NumberofFiboCalls](https://community.topcoder.com/stat?c=problem_statement&pm=2292&rd=10709)  
+4. [MonstersAndBunnies](https://community.topcoder.com/stat?c=problem_statement&pm=8595&rd=12007)
+Observation:  
+   - If monsetr is 0, you wont die for sure , so retun 1.  
+   - If monster is odd, sure you will die , so return 0.
+   
+
+
 5. [NumberofFiboCalls](https://community.topcoder.com/stat?c=problem_statement&pm=2292&rd=10709)  
 6. [NumberofFiboCalls](https://community.topcoder.com/stat?c=problem_statement&pm=2292&rd=10709)  
 
