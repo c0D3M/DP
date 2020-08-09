@@ -32,9 +32,9 @@ Observation:
    - If monsetr is 0, you wont die for sure , so retun 1.  
    - If monster is odd, sure you will die , so return 0.
    
-5. [MakeSquare](https://community.topcoder.com/stat?c=problem_statement&pm=2292&rd=10709)  
-6. [NoRepeatPlaylist](https://community.topcoder.com/stat?c=problem_statement&pm=2292&rd=10709)  
-7. [RandomSwaps](https://community.topcoder.com/stat?c=problem_statement&pm=2292&rd=10709)  
-8. [BoxTower](https://community.topcoder.com/stat?c=problem_statement&pm=2292&rd=10709)  
-9. [BearPermutations](https://community.topcoder.com/stat?c=problem_statement&pm=2292&rd=10709)  
-10. [DiameterOfRandomTree](https://community.topcoder.com/stat?c=problem_statement&pm=2292&rd=10709)  
+5. [MakeSquare](https://community.topcoder.com/stat?c=problem_statement&pm=8681&rd=14426)  
+6. [NoRepeatPlaylist](https://community.topcoder.com/stat?c=problem_statement&pm=11774&rd=14724)  
+7. [RandomSwaps](https://community.topcoder.com/stat?c=problem_statement&pm=7289&rd=10662)  
+8. [BoxTower](https://community.topcoder.com/stat?c=problem_statement&pm=6576&rd=9990)  
+9. [BearPermutations](https://community.topcoder.com/stat?c=problem_statement&pm=14080&rd=16616)  
+10. [DiameterOfRandomTree](https://community.topcoder.com/stat?c=problem_statement&pm=14102&rd=16627)  
