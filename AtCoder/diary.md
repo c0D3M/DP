@@ -1,4 +1,4 @@
-**A Frog 1**  
+**A. Frog 1**  
 Frog is at Stone 1.  
 Frog can make 2 of the possible move +1 or +2.  
 Cost of each move is |hi - hi+1|  
@@ -12,3 +12,12 @@ Take min of it.
 
 Time Complexity = O(n)  
 Space Complexity = O(n)  
+**A. Frog 1**  
+**A. Frog 1**  
+**A. Frog 1**  
+**A. Frog 1**  
+**A. Frog 1**  
+**A. Frog 1**  
+**A. Frog 1**  
+**A. Frog 1**  
+**A. Frog 1**  
