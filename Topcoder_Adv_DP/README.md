@@ -48,7 +48,7 @@ DP state: dp[s][a][b][c] , songs to be sang, a, b, c singer quota.
 From each state, you can go a has quota , b has quota , c has quota, either 2 of them can sing same cong, all 3 can sing same song.  
 Just recursively call and memoize each state.  
 
-7.  [MiniPaint]()
-8.  [MagicianTour]()
-9.  [TeamPhoto]()
-10. [Jewelry]()
+7.  [MiniPaint](https://community.topcoder.com/stat?c=problem_statement&pm=1996&rd=4710)
+8.  [MagicianTour](https://community.topcoder.com/stat?c=problem_statement&pm=2346&rd=4775)
+9.  [TeamPhoto](https://community.topcoder.com/stat?c=problem_statement&pm=1614)
+10. [Jewelry](https://community.topcoder.com/stat?c=problem_statement&pm=1166&rd=4705)
