@@ -16,7 +16,7 @@ For each number we will maintain number of {0} and {1}.
 Base case is for n=0 {0}= 1 and {1}=0.  
 n=1 {0}= 0 and {1}=1.  
 
-2. [EmoticonsDiv2](https://community.topcoder.com/stat?c=problem_statement&pm=13041&rd=15845){:target="_blank"}  
+2. [EmoticonsDiv2](https://community.topcoder.com/stat?c=problem_statement&pm=13041&rd=15845)  
 
 3. [HandsShaking](https://community.topcoder.com/stat?c=problem_statement&pm=7868&rd=10777)  
 n is even.  
