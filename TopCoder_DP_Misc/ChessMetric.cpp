@@ -37,7 +37,7 @@ class ChessMetric {
 	//long long ret = a.howMany(3, {0, 0}, {1, 2}, 1); //1
 	//long long ret = a.howMany(3, {0, 0}, {2, 2}, 1); //0
 	//long long ret = a.howMany(3, {0, 0}, {0, 0}, 2); //5
-	long long ret = a.howMany(100, {0, 0}, {0, 99}, 50); //1
+	long long ret = a.howMany(100, {0, 0}, {0, 99}, 50); //243097320072600
 	cout <<ret;
 	return 0;
 }
