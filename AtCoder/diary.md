@@ -33,10 +33,30 @@ dp[i][j] = max(dp[i][j-1], item[j][1] + dp[i-item[j][0]][j])
 **E. Knapsack 2**  
 Now W is 10^9, and the runtime can be longer.  
 Further we are unnecessaryily iterating for each weights , which may not be useful.  
+V is smaller, so lets make DP table of V and further we store only 2 rows of DP to optimize of memory.  
+Note that previous state of DP has memory of all the other previous states.  
+So it is sufficient to keep just previou state and work on current state and flip between two of them.  
+So we iterate the items:  
+   Iterate the value:
+     if value of ith item is less than current value;
+        see whats the minimum weight to get the required value.  
+        
+**F. LCS**
+for each index of string1 , we iterate string2. 
+Either string1 and string 2 match at the given index : dp[i][j] = 1 + dp[i-1][j-1]; since we are extending the LCS by 1.  
+If not: dp[i][j] = max(dp[i-1][j], dp[i][j-1]) ; LCS would either string1 match previous string2 or vice versa.  
 
+**G. Longest Path**  
+Graph based.  
 
-**A. Frog 1**  
-**A. Frog 1**  
-**A. Frog 1**  
-**A. Frog 1**  
+**H. Grid 1**  
+Same as Maximum Falling Sum.  
+
+**I. Coins**  
+N coins and each has probability of coming head as input.  
+More heads than tail.  
+dp table has coins in rows and # of heads as colums , column #0 is tails , which is calculated above during processing input.  
+For example : 2 coins with 1 head =  2nd coin is tails * 1st coins is head + 2nd coin is head * 1st coin is tail.  
+
+In the end for last coin , sum all n/2 + 1 to n head columns, since only then we have more head than tail.  
 **A. Frog 1**  
