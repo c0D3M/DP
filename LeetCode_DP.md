@@ -23,7 +23,7 @@ Same kind of check i.e. maxLen == dp[i] then maxLenCount += cnt[i]
 Otherwise if a new LIS is found ( d[i] > maxLen) , that case maxLenCount = cnt[i].  
 
 ##### 1143. Longest Common Subsequence  
-https://leetcode.com/problems/longest-common-subsequence/
+https://leetcode.com/problems/longest-common-subsequence/  
 2 strings are given and we have to find a command subsequence.  
 Create a 2D DP table 
 and for each index of 2nd-string for each index of 1st string ( nested loops).  
@@ -34,13 +34,24 @@ otherwise, take max of  (string-1 and prev of string2, string-2 and prev of stri
 
 
 ##### Leetcode 1218: Longest Arithmetic Subsequence with given difference.
+https://leetcode.com/problems/longest-arithmetic-subsequence-of-given-difference/
 Key point is difference is given.  
 Take a hash map for DP table  
-Interate each element and see if arr[i] - difference exist in hash map or not ?
+Interate each element and see if arr[i] - difference exist in hash map or not ?  
  If exist that means we are extending the Arithemtic series by 1 so just update dp[arr[i]] = dp[arr[i]-difference] + 1  
  not that means dp[arr[i]] = 1  because minimum length of any Arithemtic series can be 1.  
  Time complexity is O(n)  
  Space Complexisty is at max O(n)  
  
 ##### Leetcode 1027: Longest Arithmetic Subsequence. 
+https://leetcode.com/problems/longest-arithmetic-sequence/  
 Same as above but no difference is given and there can be many series but we have to find the longest one.  
+At each index save hashmap which will have difference as key and size of AP as series.  
+Out loop i for each index.  
+ Inner loop j  from 0 to outer loop index.  
+ diff =  A[i]- A[j]
+ Does this diff exists in hasmap of dp[j]
+ if yes that means we are extending the AP series by 1 (by adding A[i] to series.
+ dp[i][diff] = dp[j][diff] + 1
+ otherwise 2 number can always form a AP series so dp[i][diff] =  2.  
+ Lastly like always check the maxlen and update with dp[i][diff].  
