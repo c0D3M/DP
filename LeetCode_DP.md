@@ -11,9 +11,16 @@ dp[i] = max(dp[i], dp[j] + 1) => we are extending the increasing subsequence by 
 
 Return the maximum in dp array.
 
-##### 673. Number of Longest Increasing Subsequence  [TODO]  
+##### 673. Number of Longest Increasing Subsequence  
 https://leetcode.com/problems/number-of-longest-increasing-subsequence/  
 Same as above , this time we have to find "how many" longest increasing subsequence are there.  
+dp[n] = 1, cnt[n] =1, maxLen(LIS) = 0, maxLenCount=0(count of LIS).  
+Key idea is dont use max() function as above, but check for 2 Cases separately.  
+Case 1: if dp[i] == dp[j]+1 that means we found another LIS of same length so cnt[i] += cnt[j].  
+Case 2: if dp[j]+1 > dp[i]; that means a new LIS is found and we are extending the LIS of dp[j], so cnt[i] = cnt[j].  
+After exiting inner loop.  
+Same kind of check i.e. maxLen == dp[i] then maxLenCount += cnt[i]  
+Otherwise if a new LIS is found ( d[i] > maxLen) , that case maxLenCount = cnt[i].  
 
 ##### 1143. Longest Common Subsequence  
 https://leetcode.com/problems/longest-common-subsequence/
