@@ -33,7 +33,7 @@ otherwise, take max of  (string-1 and prev of string2, string-2 and prev of stri
    dp[i][j] = max(dp[i-1][j], dp[i][j-1])
 
 
-##### Leetcode 1218: Longest Arithmetic Subsequence with given difference.
+##### 1218: Longest Arithmetic Subsequence with given difference.
 https://leetcode.com/problems/longest-arithmetic-subsequence-of-given-difference/
 Key point is difference is given.  
 Take a hash map for DP table  
@@ -43,7 +43,7 @@ Interate each element and see if arr[i] - difference exist in hash map or not ?
  Time complexity is O(n)  
  Space Complexisty is at max O(n)  
  
-##### Leetcode 1027: Longest Arithmetic Subsequence. 
+##### 1027: Longest Arithmetic Subsequence. 
 https://leetcode.com/problems/longest-arithmetic-sequence/  
 Same as above but no difference is given and there can be many series but we have to find the longest one.  
 At each index save hashmap which will have difference as key and size of AP as series.  
