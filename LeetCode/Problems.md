@@ -1,3 +1,22 @@
+**464. Can I Win**  
+Rules of Game:  
+- Can chose any number between 1 to maxChooseable.  
+- Already chosen number can be chosen again.  
+- The player who make the sum >= targetSum wins.  
+
+Steps:  
+Maintain bitmask of numbers being used or not.  
+Also maintain running sum.  
+Iterate 0 to maxChooseable.
+Check if bitmask is 0, that means this number is free to be chosen.
+if sum + i >= targetSum, we can win. return true.  
+Otherwise we want opponent to loose and only in the case opponent return false we can win.  
+Opponent will also use best strategy.  
+
+Memoization:
+dp state would be what all numbers haven been chosen, since maxChooseable can be 20, bitmask can be used and this bitmask can be stored in hasmap.  
+
+
 **494. Target Sum**  
 We are given an array and a target sum, we can use +/-.   
 Need to find how many ways target sum can be achieved.  
@@ -28,6 +47,20 @@ if numbers are divisble
     later dp_r is used to with element , since we haev to return the set not the size.  
   if dp[i] > answer
     update answer 
+
+**1155. Number of dice roll**  
+*d* dices *f* faces and *target* is given, how many ways to achieve.  
+Sanity check (d * f < target) then not possible.  
+At each dice roll, find whats the max and minimum a dice can roll.  
+For example if target is 3 and dice has 6 faces, minimum dice can roll is 1 and maximum it can 3.  
+Start a loop of min to max.  
+recurse with decreased target and 1 less dice roll.  
+
+If we are at last dice , we can surely achieve the target so return 1.  
+Note that sanity check of target not been achieve has already been done beofre this check.  
+dp state is # dice left and # target left to achieve.
+Problem statement gave a hint as well that d is 30 and target sum is 1000, hence a dp array is possible.  
+
 
 **212. Maximal square**  
 Need to find largest square inside a matrix.  
