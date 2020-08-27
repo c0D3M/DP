@@ -1,3 +1,11 @@
+**983. Minimum Cost For Tickets**
+We have to travel on specific days and we have 3 type of pass daily, weekly, monthly.  
+Find the cheapest way to travel on given days.  
+
+Iterate each day and then on that day we have 3  choice, take the minium of it.  
+Push this result to all the forward day that this minimum cost to travel on that day.  
+THis will be useful when calculting in future.  
+
 **464. Can I Win**  
 Rules of Game:  
 - Can chose any number between 1 to maxChooseable.  
