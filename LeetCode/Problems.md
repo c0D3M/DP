@@ -1,3 +1,13 @@
+**877. Stone Game**
+Two players play game and they can choose number from array from left or right end. In the end whoever sum is largest is winner.  
+Array is even size and sum of array number is odd so that there is no tie.  
+
+Here we dont bother what other person choose, we only bother to make our sum just greater than total array sum in n/2 moves.  
+target = total/2 + 1  
+End Condition: When n/2 moves are done , check if sum >= target return true otherwise false.  
+memoization dp[l] and dp[r], at each step we can either take left index or right.  
+Evaluate if not already done.  
+
 **983. Minimum Cost For Tickets**
 We have to travel on specific days and we have 3 type of pass daily, weekly, monthly.  
 Find the cheapest way to travel on given days.  
