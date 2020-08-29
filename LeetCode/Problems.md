@@ -1,3 +1,19 @@
+**1406. Stone Game III**  
+2 player Alice and Bob play games where on each turn can choose either 1 or 2 or 3 stone.  
+Winner will be person who sum is more than other.  
+Alice is winner is A > B which mean A-B > 0  
+Tie if A equals B which means A-B=0  
+Bob wins if B > A i.e. A - B < 0.  
+And both play optimally.  
+
+Strategy is at each turn(array index) , choose either 1, 2, 3 and then recurse.  
+This will be dp array dp[n][3]  
+Base condition : when index is 'n', i.e. size of array tile, no move can be made so return 0.  
+Pass array index in recursion based on what move is selected.
+Key idea is to subtract the recursion result, this because the opponent (either Alice or Bob , play optimally).  
+And then select best among the 3 moves.  
+Idea is to optimally subdivide array in 2 parts where the difference is least.  
+
 **877. Stone Game**
 Two players play game and they can choose number from array from left or right end. In the end whoever sum is largest is winner.  
 Array is even size and sum of array number is odd so that there is no tie.  
