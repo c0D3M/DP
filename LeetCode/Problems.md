@@ -1,3 +1,9 @@
+**1510. Stone Game IV**
+Similar to earlier problem but here instead of accumulation score , we have to check who finish the stones first then the other person lose.  
+Couple of optimization, instead of map use array, which is faster access.  
+the moment dp[n] is true return , because thats the best a player can achieve, i.e. true means he has way to win, so return immediately.  
+
+
 **1406. Stone Game III**  
 2 player Alice and Bob play games where on each turn can choose either 1 or 2 or 3 stone.  
 Winner will be person who sum is more than other.  
