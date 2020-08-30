@@ -37,6 +37,13 @@ Key idea is to subtract the recursion result, this because the opponent (either 
 And then select best among the 3 moves.  
 Idea is to optimally subdivide array in 2 parts where the difference is least.  
 
+**1140. Stone Game II**  
+Base condition: when all piles are taken i.e. index==n , return 0.
+Memoization: At each index, m choices can be made and we have store the best of it so dp[n][m].  
+Key Idea: At each index, take 1 to 2 * m piles and recurse further with new index and updated m value.  
+Now since opponent will also play at its best , we have to subtract its score , so subtract the return value of recursion.  
+dp[n][m], stores the max of those m moves.  
+
 **877. Stone Game**
 Two players play game and they can choose number from array from left or right end. In the end whoever sum is largest is winner.  
 Array is even size and sum of array number is odd so that there is no tie.  
