@@ -1,3 +1,20 @@
+**1563. Stone Game V**
+Objective of the game is to sub-divide the array into 2 halves and then throw the half whose sum is higher.  
+Recurisvely keep doing this until there is just 1 row left.  
+Base condition:  
+- If there is just 1 item in array, return 0, that can be achieved by l-r==0, where l and r are left and right index.  
+- Additionally if l-r==1 , that means just 2 items in array, return minium of it.  
+
+DP memoization:  
+At each state we have array which is bounded by l and r values,this can serve as dp state.  
+
+Logic:  
+So at each state , iterate all possible subdivision and get the sum of that subdivision.  
+sum can be achieved via prefix sum method.  
+Take the minium of left or right sum and recurse further on minimum subarray with updated values of l and r.  
+If left and right sum are equal , in that case recurse on both left half and right half and take maximum of it.  
+
+
 **1510. Stone Game IV**
 Similar to earlier problem but here instead of accumulation score , we have to check who finish the stones first then the other person lose.  
 Couple of optimization, instead of map use array, which is faster access.  
