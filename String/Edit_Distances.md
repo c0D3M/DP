@@ -149,6 +149,12 @@ public:
         return dp[m][n];
     }
 };
+Let me show you that Approach 2 and 3 are exactly opposite of each other.
+We will show with example word1="abc", word2="bcd"
+
+![image](https://user-images.githubusercontent.com/20656683/111882251-a63fb180-89da-11eb-88bb-7fbbbd107757.png)
+
+
 ```
 **Approach 4 : Space Optimized DP**  
 Above tabluation based DP approach consume space of O( M* N ), we can further reduce this to 1-D DP. 
