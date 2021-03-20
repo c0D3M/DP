@@ -13,9 +13,12 @@ At a given index **i** in word1 and **j** in word2 in both string , if the chara
 - **Insert**, this means we are trying to make i,j equal by insertint a matching character before position 'j', so now i match with new inserted char ,   
               but j is still pending so we have to solve [i+1, j]  
 - **Deleting** , this mean whatever is at j we are deleting, so for j we are moving ahead but i still at its position,  so we have to solve [i, j+1]  
+More formally  
+f(i, j) = 1 + min { f(i+1, j+1) , f(i+1, j), f(i, j+1) }  
 And we have to take minimum of these.  
-If characters match we have to solve [i+1, j+1]
+If characters match we have to solve [i+1, j+1]  
 
+**Approach 1**  
 So the code for this recursive solution would be  
 Base Case:  
 - if i reached till the end , in that case we have to see how many characters still left in word2 and return that.  
@@ -71,3 +74,16 @@ public:
     }
 };
 ```
+**Approach 2**
+Lets convert this memoization based recursive approach to tabulation based iterative approach.  
+f(i, j) = 1 + min { f(i+1, j+1) , f(i+1, j), f(i, j+1) }  
+**Step 1**  
+Table constrction: create a dp table of size dp[1+m][1+n].  
+Extra 1 size to handle case of string completely exhaausted.  
+Base case value to initialized in table, remember in recursive solution whenever i==m we return word2.size()-j and vice versa.  
+So here in tabulation approach when i==m-> dp[i][j] = word2.size() -j and when j==n -> dp[i][j] = word1.size()-i  
+
+
+**Step 2**   
+How to start the loops:  Notice that our recursive function is dependent on future values, hence we cant start from i=0 or j=0  
+we have to start backward, when working backward future value would have been already calculated.  
