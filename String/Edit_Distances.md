@@ -150,7 +150,7 @@ public:
     }
 };
 ```
-**Space Optimized DP**  
+**Approach 4 : Space Optimized DP**  
 Above tabluation based DP approach consume space of O( M* N ), we can further reduce this to 1-D DP. 
 Notice that as per DP recursive statement we are only dependent on 1-previous or 1-future row to compute the current row.  
 One easy way is to maintain 2 row, one which we will fill in the value of current row and 1 row which has values from previous row operation and then alternate between this row. There is even a smart way where 2nd row itself is also not required, lets discuss that.  
