@@ -74,7 +74,7 @@ public:
     }
 };
 ```
-**Approach 2**
+**Approach 2**  
 Lets convert this memoization based recursive approach to tabulation based iterative approach.  
 f(i, j) = 1 + min { f(i+1, j+1) , f(i+1, j), f(i, j+1) }  
 **Step 1**  
@@ -119,3 +119,38 @@ public:
     }
 };
 ```
+**Approach 3**  
+Generally we are more familiar with starting the loop with 0 to n.   
+This problem can be solve using this way as well, only the base case change i.e. when i=0 , that mean we are left with entire j length of word2 so dp[i][j]= j;  
+Similar when j==0 , dp[i][j]=i  
+```
+class Solution {
+public:
+    int minDistance(string word1, string word2) {
+        int m = word1.size();
+        int n = word2.size();
+        vector<vector<int>> dp(1+m, vector<int>(1+n, 0));
+        for(int i=0; i <= m; ++i)
+        {
+            for(int j=0; j<=n; ++j)
+            {
+                if(i==0)
+                    dp[i][j] = j;
+                else if(j==0)
+                    dp[i][j] = i;
+                else if(word1[i-1]==word2[j-1])
+                    dp[i][j] = dp[i-1][j-1];
+                else
+                {
+                    dp[i][j] = 1 + min({dp[i-1][j-1], dp[i][j-1], dp[i-1][j]});
+                }
+            }
+        }
+        return dp[m][n];
+    }
+};
+```
+**Space Optimized DP**  
+Above tabluation based DP approach consume space of O( M* N ), we can further reduce this to 1-D DP. 
+Notice that as per DP recursive statement we are only dependent on 1-previous or 1-future row to compute the current row.  
+One easy way is to maintain 2 row, one which we will fill in the value of current row and 1 row which has values from previous row operation and then alternate between this row. There is even a smart way where 2nd row itself is also not required, lets discuss that.  
