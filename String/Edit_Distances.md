@@ -87,3 +87,35 @@ So here in tabulation approach when i==m-> dp[i][j] = word2.size() -j and when j
 **Step 2**   
 How to start the loops:  Notice that our recursive function is dependent on future values, hence we cant start from i=0 or j=0  
 we have to start backward, when working backward future value would have been already calculated.  
+
+```
+
+class Solution {
+public:
+    int minDistance(string word1, string word2) {
+        // Iterative version of recursive approach
+        // Since recursive approach rely on future value
+        // we should start backward i.e. i=m j=n
+        int m = word1.size();
+        int n = word2.size();
+        vector<vector<int>> dp(1+m, vector<int>(1+n, 0));
+        for(int i = m ; i >=0; --i)
+        {
+            for(int j = n ; j >=0; --j)
+            {
+                if(i==m) // that means word1 is exhausted
+                    dp[i][j] = n - j;
+                else if(j==n)
+                    dp[i][j] = m - i;
+                else if(word1[i]!=word2[j])
+                {
+                    dp[i][j] = 1 + min({dp[i+1][j], dp[i][j+1], dp[i+1][j+1]});
+                }
+                else
+                    dp[i][j] = dp[i+1][j+1];
+            }
+        }
+        return dp[0][0];
+    }
+};
+```
