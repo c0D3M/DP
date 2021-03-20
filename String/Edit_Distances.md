@@ -149,14 +149,72 @@ public:
         return dp[m][n];
     }
 };
+```
+
 Let me show you that Approach 2 and 3 are exactly opposite of each other.
 We will show with example word1="abc", word2="bcd"
 
 ![image](https://user-images.githubusercontent.com/20656683/111882251-a63fb180-89da-11eb-88bb-7fbbbd107757.png)
 
 
-```
+
 **Approach 4 : Space Optimized DP**  
 Above tabluation based DP approach consume space of O( M* N ), we can further reduce this to 1-D DP. 
-Notice that as per DP recursive statement we are only dependent on 1-previous or 1-future row to compute the current row.  
-One easy way is to maintain 2 row, one which we will fill in the value of current row and 1 row which has values from previous row operation and then alternate between this row. There is even a smart way where 2nd row itself is also not required, lets discuss that.  
+Notice that as per DP recursive statement we are only dependent on 1-future row or 1-previous  (Approach 2 vs Approach 3) to compute the current row.  
+One easy way is to maintain 2 row, one which we will fill in the value of current row and 1 row which has values from previous row operation and then toggle between this row. There is even a smarter way where 2nd row itself is also not required, lets discuss that.  
+I am going to discuss 1-D verion of Approach 2 but it is also applicable for Approach 3 as well.  
+
+Step 1: Always create 1-D DP array for smaller string , for our problem, I will always make word2 as smaller, if its not smaller , call the function by reversing argument.  
+Step 2: Recall our recusrive function
+          f(i, j) = 1 + min { f(i+1, j+1) , f(i+1, j), f(i, j+1) }  
+
+![image](https://user-images.githubusercontent.com/20656683/111882720-13ecdd00-89dd-11eb-9c38-9f2f25c94621.png)
+
+Step 3: Base case value remain same, just that now its 1-D.
+Step 4: Make sure everywhere dp[i+1][j+1] is replaced by prev, dp[i+1][j] is dp[j] itself and dp[i][j+1] is dp[j+1].  
+
+Code for this looks somehing like this.
+```
+
+class Solution {
+public:
+    int minDistance(string word1, string word2) {
+        // Iterative version of recursive approach
+        // Since recursive approach rely on future value
+        // we should start backward i.e. i=m j=n
+        
+        int m = word1.size();
+        int n = word2.size();
+        if(m < n)
+            return minDistance(word2, word1);
+        
+        // Space optimized 1-D DP version
+        vector<int> dp(1+n, 0);
+        dp[n] = 0;
+        int prev;
+        for(int i = m; i >=0; --i)
+        {
+            prev = dp[n];
+            for(int j = n ; j >=0; --j)
+            {
+                int oldDP = dp[j];
+                if(i==m)
+                    dp[j] = n-j;
+                else if(j==n)
+                    dp[j] = m-i;
+                else if(word1[i]!=word2[j])
+                {
+                    dp[j] = 1 + min({dp[j], dp[j+1], prev});
+                }
+                else
+                    dp[j] = prev;
+                prev = oldDP;
+            }
+        }
+        return dp[0];
+    }
+};
+```
+
+
+
