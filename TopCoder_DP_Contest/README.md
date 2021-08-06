@@ -15,7 +15,28 @@ Iterative we can build the dp array.
 For each number we will maintain number of {0} and {1}.  
 Base case is for n=0 {0}= 1 and {1}=0.  
 n=1 {0}= 0 and {1}=1.  
+```
+vector <int> fiboCallsMade(int n)
+{
+ 	vector<vector<int>> dp(n+1, vector<int>(2));
+ 	dp[0][0] = 1;
+ 	dp[0][1] = 0;
+    if(n!=0)
+    {
 
+        dp[1][0] = 0;
+        dp[1][1] = 1;
+
+        for(int i =2; i <=n; ++i)
+        {
+           dp[i][0] = dp[i-1][0] + dp[i-2][0];
+           dp[i][1] = dp[i-1][1] + dp[i-2][1];
+        }
+    }
+    return dp[n];
+}
+
+```
 2. [EmoticonsDiv2](https://community.topcoder.com/stat?c=problem_statement&pm=13041&rd=15845)  
 Key idea is for smaller sub-problem find the optimal solution by seeing how many ways it can be perfectly divided.  
 For odd number it is always same way as they cant be divided.  
