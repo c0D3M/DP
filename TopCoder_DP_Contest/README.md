@@ -17,6 +17,23 @@ Base case is for n=0 {0}= 1 and {1}=0.
 n=1 {0}= 0 and {1}=1.  
 
 2. [EmoticonsDiv2](https://community.topcoder.com/stat?c=problem_statement&pm=13041&rd=15845)  
+Key idea is for smaller sub-problem find the optimal solution by seeing how many ways it can be perfectly divided.  
+For odd number it is always same way as they cant be divided.  
+For example if n=8 , see if 8 can be divided [2,4] , see the cost of 2 and 1 copy + 3 paste which is 4.  
+So total cost is dp[2] + 8/2  
+```
+int printSmiles(int n)
+{
+    vector<int> dp(n+1, 0);
+    iota(dp.begin(), dp.end(), 0);
+    dp[1] = 0;
+    for(int i = 2; i <=n ; ++i)
+        for(int j = 1 ; j <=i ; ++j)
+    		if((i%j)==0)
+    			dp[i] = min(dp[i], dp[j]+(i/j));
+    return dp[n];
+}
+````
 
 3. [HandsShaking](https://community.topcoder.com/stat?c=problem_statement&pm=7868&rd=10777)  
 n is even.  
