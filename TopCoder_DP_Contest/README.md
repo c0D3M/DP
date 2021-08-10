@@ -63,6 +63,23 @@ My approach is is to recursively split 'n' into 0 and n-2.
 Why n-2 because we are keeping 2 people fixed and left half is 0 and right half is n-2.  
 then we increment left half by2 and decrement right by 2 and keep doingt left != right.  
 Before recurse check if dp result is available or not.  
+Iterative Method  
+```
+	long long countPerfect(int n)
+	{
+		vector<long long > dp(1+n, 0);
+		dp[0] = 1;dp[2] = 1;dp[4] = 2;
+		for(int i =6 ; i <=n ; i+=2)
+		{
+			for(int j =0; j <=i-2; j=j+2)
+			{
+				dp[i] += (dp[j] * dp[i-2-j]);
+			}
+		}
+		return dp[n];
+	}
+
+```
 
 
 4. [MonstersAndBunnies](https://community.topcoder.com/stat?c=problem_statement&pm=8595&rd=12007)
