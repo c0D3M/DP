@@ -86,6 +86,22 @@ Iterative Method
 Observation:  
    - If monsetr is 0, you wont die for sure , so retun 1.  
    - If monster is odd, sure you will die , so return 0.
+   - If monster is even, unfavourable fight wth monster are M. Total fiught among monster are (M * (M-1))/2  
+     because 1st monster can fight M-1 , 2nd can M-2 so total would be (AP sum).  
+     Hence Total Fight  = M + (M * M-1)/2  
+     Favourable are M * (M -1)/2  i.e. monster fight among themselves.  
+     Hence Probability would be 1/ (1+M)
+```
+double survivalProbability(int M, int B)
+{
+    (void)B;
+	if(M%2==0) // Even
+	{
+		return 1.0 / (1.0 + M);
+	}
+	return 0.0;
+}
+```
    
 5. [MakeSquare](https://community.topcoder.com/stat?c=problem_statement&pm=8681&rd=14426)  
 6. [NoRepeatPlaylist](https://community.topcoder.com/stat?c=problem_statement&pm=11774&rd=14724)  
