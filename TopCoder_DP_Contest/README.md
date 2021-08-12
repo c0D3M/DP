@@ -176,6 +176,46 @@ class MakeSquare{
     }
 ```
 7. [RandomSwaps](https://community.topcoder.com/stat?c=problem_statement&pm=7289&rd=10662)  
+```
+#include <bits/stdc++.h>
+#include <algorithm>
+using namespace std;
+class RandomSwaps
+{
+public:
+double getProbability(int N, int swapCount, int a, int b)
+{
+    vector<vector<double>> dp(2, vector<double>(1+swapCount, 0));
+    /*
+    dp[0] holds probability that a coems to b
+    dp[1] holds probability that a doesnt comes to b
+    */
+    if(a==b)
+    	dp[0][0] = 1.0; // since at begining a is same as b so probabilty is 1 with 0 swapcount
+    else
+    	dp[1][0] = 1.0; // since at begining a is not same as b so probabilty is 1
+    // AP means sum of n number
+    // Total swap are AP(N-1) i.e. N=4 ...a.b , a.c, a.d, b.c, b.d, c.d = 6 i.e. AP(3)
+    for(int i =1; i<=swapCount; ++i)
+    {
+      // a remain b 
+      // this can be achived in 2 aways from dp[0][i-1]
+      // 1st way is dp[0][i-1] remain as is and rest AP(n-2) swap amoung themselves /AP(N-1) Probab = AP(N-2)/AP(N-1) = N-2/2
+      dp[0][i] = dp[0][i-1] * (N-2) / N ; // remain in target from target
+      // Another possibility is a can come to b from dp[1][i-1] that will be exactly 1 way to do so 1 / AP(N-1)
+      dp[0][i] += dp[1][i-1] * ( 2.0 /(N*(N-1) ) ); // remain in target from off target
+      // For dp[1][i]
+      // N-1 ways to off target from target N-1 / AP(N-1) = 2 / N;
+      dp[1][i] = dp[0][i-1] * 2.0 / N ;
+      // Remain off target from off target , which is calculated as 1 - (n-1 / AP(N-1)) , since n-1 way to come to target , 
+      dp[1][i] += dp[1][i-1] *  (1.0 - 2.0 / N / (N - 1));
+      
+    }	
+    return dp[0][swapCount];
+}
+
+};
+```
 8. [BoxTower](https://community.topcoder.com/stat?c=problem_statement&pm=6576&rd=9990)  
 9. [BearPermutations](https://community.topcoder.com/stat?c=problem_statement&pm=14080&rd=16616)  
 10. [DiameterOfRandomTree](https://community.topcoder.com/stat?c=problem_statement&pm=14102&rd=16627)  
