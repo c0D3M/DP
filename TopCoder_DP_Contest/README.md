@@ -104,8 +104,57 @@ double survivalProbability(int M, int B)
 ```
    
 5. [MakeSquare](https://community.topcoder.com/stat?c=problem_statement&pm=8681&rd=14426)  
-6. [NoRepeatPlaylist](https://community.topcoder.com/stat?c=problem_statement&pm=11774&rd=14724)  
-7. [RandomSwaps](https://community.topcoder.com/stat?c=problem_statement&pm=7289&rd=10662)  
-8. [BoxTower](https://community.topcoder.com/stat?c=problem_statement&pm=6576&rd=9990)  
-9. [BearPermutations](https://community.topcoder.com/stat?c=problem_statement&pm=14080&rd=16616)  
-10. [DiameterOfRandomTree](https://community.topcoder.com/stat?c=problem_statement&pm=14102&rd=16627)  
+This is same as Edit Distance problem on LC but on every index.  
+```
+#include <bits/stdc++.h>
+#include <algorithm>
+using namespace std;
+
+#define MAXN 55
+int dp[MAXN][MAXN];
+class MakeSquare{
+    int solve(string s1, string s2)
+        {
+            // If s2 is empty we need s1 size of changes surely
+        	for(int i =0; i <=s1.size(); ++i)
+                dp[0][i] = i;
+        	for(int i =0; i <=s2.size(); ++i)
+                dp[i][0] = i;
+            for(int i =1; i <=s2.size(); ++i){
+                for(int j =1; j <=s1.size(); ++j){
+                    if(s2[i-1]==s1[j-1])
+                        dp[i][j]=dp[i-1][j-1];
+                    else
+                        {
+                              //Erase
+                              dp[i][j] = 1 + dp[i][j-1];
+                              // Replace
+                              dp[i][j] = min(dp[i][j], 1 + dp[i-1][j-1]);
+                              // Insert                                
+                              dp[i][j] = min(dp[i][j], 1 + dp[i-1][j]);
+                        }
+                } // End of Inner Loop
+            }// End of Outer Loop
+            return dp[s2.size()][s1.size()];
+        }
+    public:
+     int minChanges(string S){
+         int l = S.size();
+         
+         int ans = INT_MAX;
+         for(int i= 0; i <=l; ++i)
+             {
+             string s1 = S.substr(0, i);
+             string s2 = S.substr(i);
+             ans = min(ans, solve(s1, s2));
+             }
+         return ans;
+         
+     }
+};
+```
+7. [NoRepeatPlaylist](https://community.topcoder.com/stat?c=problem_statement&pm=11774&rd=14724)  
+8. [RandomSwaps](https://community.topcoder.com/stat?c=problem_statement&pm=7289&rd=10662)  
+9. [BoxTower](https://community.topcoder.com/stat?c=problem_statement&pm=6576&rd=9990)  
+10. [BearPermutations](https://community.topcoder.com/stat?c=problem_statement&pm=14080&rd=16616)  
+11. [DiameterOfRandomTree](https://community.topcoder.com/stat?c=problem_statement&pm=14102&rd=16627)  
