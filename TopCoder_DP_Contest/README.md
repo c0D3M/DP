@@ -153,7 +153,7 @@ class MakeSquare{
      }
 };
 ```
-7. [NoRepeatPlaylist](https://community.topcoder.com/stat?c=problem_statement&pm=11774&rd=14724)  
+6. [NoRepeatPlaylist](https://community.topcoder.com/stat?c=problem_statement&pm=11774&rd=14724)  
 ```
     int numPlaylists(int N, int M, int P)
     {
@@ -175,7 +175,7 @@ class MakeSquare{
         return (int)dp[P][N];
     }
 ```
-9. [RandomSwaps](https://community.topcoder.com/stat?c=problem_statement&pm=7289&rd=10662)  
-10. [BoxTower](https://community.topcoder.com/stat?c=problem_statement&pm=6576&rd=9990)  
-11. [BearPermutations](https://community.topcoder.com/stat?c=problem_statement&pm=14080&rd=16616)  
-12. [DiameterOfRandomTree](https://community.topcoder.com/stat?c=problem_statement&pm=14102&rd=16627)  
+7. [RandomSwaps](https://community.topcoder.com/stat?c=problem_statement&pm=7289&rd=10662)  
+8. [BoxTower](https://community.topcoder.com/stat?c=problem_statement&pm=6576&rd=9990)  
+9. [BearPermutations](https://community.topcoder.com/stat?c=problem_statement&pm=14080&rd=16616)  
+10. [DiameterOfRandomTree](https://community.topcoder.com/stat?c=problem_statement&pm=14102&rd=16627)  
