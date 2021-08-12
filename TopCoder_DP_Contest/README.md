@@ -154,7 +154,28 @@ class MakeSquare{
 };
 ```
 7. [NoRepeatPlaylist](https://community.topcoder.com/stat?c=problem_statement&pm=11774&rd=14724)  
-8. [RandomSwaps](https://community.topcoder.com/stat?c=problem_statement&pm=7289&rd=10662)  
-9. [BoxTower](https://community.topcoder.com/stat?c=problem_statement&pm=6576&rd=9990)  
-10. [BearPermutations](https://community.topcoder.com/stat?c=problem_statement&pm=14080&rd=16616)  
-11. [DiameterOfRandomTree](https://community.topcoder.com/stat?c=problem_statement&pm=14102&rd=16627)  
+```
+    int numPlaylists(int N, int M, int P)
+    {
+        const long long mod = 1e9+7;
+        vector<vector<long long >> dp;
+        dp.resize(1+P, vector<long long >(1+N, 0));
+        // We need to create a playlist of P songs
+        dp[0][0] = 1; // if there are 0 songs available and a playlist of 0 size is always possible in 1 way
+        for(int i =1 ; i <=P ; ++i)
+        {
+            // When constructing ith song we have N-(j-1) choices, since j-1 are already picked up in i-1 
+            for(int j = 1; j <=N; ++j)
+            {
+                dp[i][j] = (dp[i-1][j-1] * (N- (j-1))) % mod;// At this jth song selection we have N- (j-1) available
+                if(j>M)
+                dp[i][j] = (dp[i][j] + (dp[i-1][j] * (j-M))) % mod;// these songs are now available for reselection for example if we have selected 1st song and M =2, at j=3 , this first song is available again.
+            }
+        }
+        return (int)dp[P][N];
+    }
+```
+9. [RandomSwaps](https://community.topcoder.com/stat?c=problem_statement&pm=7289&rd=10662)  
+10. [BoxTower](https://community.topcoder.com/stat?c=problem_statement&pm=6576&rd=9990)  
+11. [BearPermutations](https://community.topcoder.com/stat?c=problem_statement&pm=14080&rd=16616)  
+12. [DiameterOfRandomTree](https://community.topcoder.com/stat?c=problem_statement&pm=14102&rd=16627)  
