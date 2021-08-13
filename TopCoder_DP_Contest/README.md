@@ -190,7 +190,7 @@ To be off target at ith swap
 ```
 double getProbability(int N, int swapCount, int a, int b)
 {
-    vector<vector<double>> dp(2, vector<double>(1+swapCount, 0));
+    vector<vector<double>> dp(2, vector<double>(1+swapCount, 0));  // dp[0] mean in target, dp[1] mean off target , 2nd index is swap count.
     if(a==b)
     	dp[0][0] = 1.0; // since at begining a is same as b so probabilty is 1 with 0 swapcount
     else
