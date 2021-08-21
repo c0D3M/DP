@@ -1,4 +1,4 @@
-Probability Problem List:  https://codeforces.com/blog/entry/19887  
+Probability & Expected Value Problem List:  https://codeforces.com/blog/entry/19887  
 
 Probability Problem on DP  
 
