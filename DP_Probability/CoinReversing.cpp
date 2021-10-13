@@ -11,11 +11,14 @@
  */
 double (int n, vector<int> a)
 {
-  double p = 1.0;
+  
+  double heads = n;
+  double tails = 0;
   for(int i =0; i < a.size(); ++i)
   {
-    double q = a[i] / (1.0*n);
-    p = p * (1 - q ) + (1-p) *q;
+    // For each coin
+    heads = ((N-a[i])*heads + a[i]*tails) / N;
+    tails = N - heads;
   }
-  return p;
+  return head;
 }
