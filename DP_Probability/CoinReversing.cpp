@@ -8,6 +8,10 @@
   Not flipped = pi * (1 - ai/N) ai/N going to be flipped, so 1-ai/N is not flipped ones
   Flipped = ai/N * (1-pi) -> probability of coins not ye flipped
   
+  Another way to look is : Suppose there are 3H and 7T and we flip 3 coins , so how many heads ?
+  Either we choose tails and that would become head : 3H * 7/10 +  7 * 3/10 
+  First part says 3H remain untouched with 7/10 probability
+  Second part says 7T converted to heade with 3/10 probability.
  */
 double (int n, vector<int> a)
 {
