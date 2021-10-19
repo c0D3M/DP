@@ -97,9 +97,4 @@ Similar repeat and we get l = 1 ([1,2] , [2,3], [3,4] , [4,5] ....) There are 4 
 [658. Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/)  **Medium**  
 [373. Find K Pairs with Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/)  **Medium**  
 [2040. Kth Smallest Product of Two Sorted Arrays](https://leetcode.com/problems/kth-smallest-product-of-two-sorted-arrays/)  **Hard**  
-
-
-
-
-
-
+[786. K-th Smallest Prime Fraction](https://leetcode.com/problems/k-th-smallest-prime-fraction/) **Hard**  
