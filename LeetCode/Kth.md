@@ -123,6 +123,16 @@ int count(int t, vector<int>& nums){
 [658. Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/)  **Medium**  
 
 [373. Find K Pairs with Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/)  **Medium**  
+Although it is possible to solve this using binary search approach but since we have to find all k-pairs, in my experince it is better to use
+priority queue approach here.  
+Put first k-element with nums1 and nums2 index min-heap.
+while(k--)
+pop out top element
+this is surely an answer since its minimum ,
+so add a new entry with nums2 index+1 if possible else skip.
+Time complexity = K Log(K) 
+Space = O(K)
+
 
 [2040. Kth Smallest Product of Two Sorted Arrays](https://leetcode.com/problems/kth-smallest-product-of-two-sorted-arrays/)  **Hard**  
 
