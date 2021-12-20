@@ -102,6 +102,59 @@ public:
     }
 };
 ```
+Follow up is how to get O(n* k), key idead is while painting with kth colors, you want to compare eveything in previous row except kth color and you want minimum from those k-1 value.  
+Lets see this with an example.  
+Suppose you have first row house cost of k paint as follows 1st paint cost as 1 , 2nd paint cost 2 ....  
+Row 1:     1 2 3 4 5  
+Row 2:     ^ at this point you have decided to paint with 1st color, so Row 1 you cant take 1, you have take min(2,3,4, 5)  
+Essentially you need minimum value and next minimum for each previous row, so that in case of clash of column index you can use next minimum.  and hence we get O(n* k)
+I am maintaining both cost and index for cheapest and next_cheapest in pair variable.
+
+```
+class Solution {
+public:
+    int minCostII(vector<vector<int>>& costs) {
+        int n = costs.size();
+        int k = costs[0].size();
+        vector<vector<int>> dp(2, vector<int>(k,0));
+        pair<int, int> low(0, 0); // val, index
+        pair<int, int> next_low(0, 1); // val, index
+        for(int i =0; i < n ; ++i){
+            // Fill dp[i&1] with INT_MAX
+            fill(dp[i&1].begin(), dp[i&1].end(), 10000);
+            pair<int, int> new_low(10000, 0);
+            pair<int, int> new_next_low(10000, 1);
+            for(int j = 0 ; j < k; ++j)
+            {
+                if(j==low.second){
+                    dp[i&1][j] = min(dp[i&1][j], costs[i][j] +  next_low.first);
+                }
+                else
+                {
+                    dp[i&1][j] = min(dp[i&1][j], costs[i][j] +  low.first);
+                }
+                if(dp[i&1][j] < new_low.first )
+                {
+                    new_next_low = new_low;
+                    new_low.first = dp[i&1][j];
+                    new_low.second = j;
+                }
+                
+                else if( dp[i&1][j] < new_next_low.first ){
+                    new_next_low.first = dp[i&1][j];
+                    new_next_low.second = j;
+                }
+                
+            }
+            low = new_low;
+            next_low = new_next_low;
+        }
+        return *min_element(dp[!(n&1)].begin(), dp[!(n&1)].end());
+    }
+};
+```
+
+
 
 [**1473. Paint House III (Hard)**](https://leetcode.com/problems/paint-house-iii/)  
 Eaxct same as LC 256 just that an extra dimension of number of neighbourhood has been added.  
