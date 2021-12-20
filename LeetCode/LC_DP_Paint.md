@@ -82,6 +82,26 @@ class Solution {
 Time Complexity is all the above 3 cases is O(n), however the last one beats 99% on both space and time.  
 
 [**265. Paint House II (Hard)**](https://leetcode.com/problems/paint-house-ii/)  
+Instead of 3 colors now we have k colors, same like above approach but now we have to run a loop and time complexity would be O(n * k^2)
+```
+class Solution {
+public:
+    int minCostII(vector<vector<int>>& costs) {
+        int n = costs.size();
+        int k = costs[0].size();
+        vector<vector<int>> dp(2, vector<int>(k,0));
+        for(int i =0; i < n ; ++i){
+            // Fill dp[i&1] with INT_MAX
+            fill(dp[i&1].begin(), dp[i&1].end(), INT_MAX);
+            for(int j = 0 ; j < k; ++j)
+                for(int l=0; l < k; ++l)
+                    if(j!=l)
+                        dp[i&1][j] = min(dp[i&1][j], costs[i][j] +  dp[!(i&1)][l]);
+        }
+        return *min_element(dp[!(n&1)].begin(), dp[!(n&1)].end());
+    }
+};
+```
 
 [**1473. Paint House III (Hard)**](https://leetcode.com/problems/paint-house-iii/)  
 Eaxct same as LC 256 just that an extra dimension of number of neighbourhood has been added.  
