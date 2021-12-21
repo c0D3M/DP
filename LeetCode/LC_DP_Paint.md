@@ -107,7 +107,7 @@ Lets see this with an example.
 Suppose you have first row house cost of k paint as follows 1st paint cost as 1 , 2nd paint cost 2 ....  
 Row 1:     1 2 3 4 5  
 Row 2:     ^ at this point you have decided to paint with 1st color, so Row 1 you cant take 1, you have take min(2,3,4, 5)  
-Essentially you need minimum value and next minimum for each previous row, so that in case of clash of column index you can use next minimum.  and hence we get O(n* k)
+Essentially you need to track minimum value and next minimum of previous row, so that in case of clash of column index you can use next minimum and thats how we can reduce  time complexity to O(n* k)
 I am maintaining both cost and index for cheapest and next_cheapest in pair variable.
 
 ```
