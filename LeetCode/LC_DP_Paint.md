@@ -204,7 +204,7 @@ public:
     }
 };
 ```
-[**276: Paint Fence HARD**](https://leetcode.com/problems/paint-fence/)  
+[**276: Paint Fence Medium**](https://leetcode.com/problems/paint-fence/)  
 [**1411. Number of Ways to Paint N × 3 Grid Hard**](https://leetcode.com/problems/number-of-ways-to-paint-n-3-grid/)  
 [**1931. Painting a Grid With Three Different Colors Hard**](https://leetcode.com/problems/painting-a-grid-with-three-different-colors/)  
 
