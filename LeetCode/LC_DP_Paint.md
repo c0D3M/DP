@@ -205,6 +205,35 @@ public:
 };
 ```
 [**276: Paint Fence Medium**](https://leetcode.com/problems/paint-fence/)  
+1. Suppose we have to paint ith fence with a color which is different than i-1.  
+   Total we have k-1 color to pick from so total ways would be (k-1) * dp[i-1]  
+        
+2. Suppose we decided that we must paint with same color as i-1  
+Now since 3 fence cant be same color, that means i-1 and i-2 must be of different color  
+And earlier derived forumula for that, replace with i-2 since it is dependent on previous fence  
+so for same color (k-1) * dp[i-2]  
+
+```
+        int p2 = k;
+        int p1 = k*k;
+        for(int i=3; i<=n; ++i){
+            int next = (k-1) *(p1 + p2);
+            p2 = p1;
+            p1 = next;
+        }
+        return p1;
+```
+        
+        
 [**1411. Number of Ways to Paint N × 3 Grid Hard**](https://leetcode.com/problems/number-of-ways-to-paint-n-3-grid/)  
+
+Key difference:
+We are using 3 colors and here the colors cant be same as previous or upper cell, this lead us in maintaining mask both for current Row as well as previous Row.  
+To represent 3 colors we need 2 bits and hence the mask is total 2 * 3 = 6 bits and whenever we set/get mask we should bitshift by  2 * column #.  
+When to use dp memo : we you start first column of a new row , check prev mask i.e. dp[r][prevMask], if its available use it , since all further calculation going to be same.  
+
+
+
 [**1931. Painting a Grid With Three Different Colors Hard**](https://leetcode.com/problems/painting-a-grid-with-three-different-colors/)  
+Same as above except row & columns are interchanged and we now have 5 column so our mask can have 2 * 5 = 10 bits i.e. total 1024 combination of bits.  
 
