@@ -205,25 +205,27 @@ public:
 };
 ```
 [**276: Paint Fence Medium**](https://leetcode.com/problems/paint-fence/)  
-1. Suppose we have to paint ith fence with a color which is different than i-1.  
-   Total we have k-1 color to pick from so total ways would be (k-1) * dp[i-1]  
-        
-2. Suppose we decided that we must paint with same color as i-1  
-Now since 3 fence cant be same color, that means i-1 and i-2 must be of different color  
-And earlier derived forumula for that, replace with i-2 since it is dependent on previous fence  
-so for same color (k-1) * dp[i-2]  
+First paint we have k choice
+2nd fence : same as 1st : we have 1 choice, i.e. paint same as previous  so total = k *  1.  
+2nd fence : diff as 1st: we have k-1 option: total = k * k-1  
+total = same +diff = k + k * (k-1)  
 
+For 3rd fence : same as 2nd fence , pick oldDiff (of 2nd steps) and we have just 1 choice = k* k-1  
+For 3rd fence : diff as 2nd fence, we have k-1 color to choose from: and we have all the previous combonation to pick = (sum + diff) * k-1  
 ```
-        int p2 = k;
-        int p1 = k*k;
-        for(int i=3; i<=n; ++i){
-            int next = (k-1) *(p1 + p2);
-            p2 = p1;
-            p1 = next;
+   int same = k; // 2 post painted in same color  , 1st post k option, 2nd post just 1 option
+        int diff = k * (k-1); // 2 post painted in diff color, 1st post we hve k option and 2nd k-1
+        for(int i =3; i <=n; ++i){
+            int oldDiff = diff;
+            // to post 3rd fence ina diff color that of 2nd fence we have k-1 option
+            // and how many total way of 2nd fence , we get from sum of diff + same
+            diff = (same + diff ) * (k-1);
+            
+            // Now we are saying 3rd and 2nd fence same color
+            same = oldDiff;
         }
-        return p1;
+        return same + diff;
 ```
-        
         
 [**1411. Number of Ways to Paint N × 3 Grid Hard**](https://leetcode.com/problems/number-of-ways-to-paint-n-3-grid/)  
 
