@@ -2,7 +2,7 @@ Probability & Expected Value Problem List:  https://codeforces.com/blog/entry/19
 Resources:
 https://community.topcoder.com/tc?module=Static&d1=match_editorials&d2=srm174  
 https://www.topcoder.com/thrive/articles/Understanding%20Probabilities  
-
+TopCoder Probem Archive: https://www.topcoder.com/tc?module=ProblemArchive
 
 Probability(P) /Expected Value(E) Problem on DP  
 
