@@ -110,7 +110,7 @@ public:
 
 Hard:  https://leetcode.com/problems/shortest-path-visiting-all-nodes/
 
-**Bi-directional BFS (Bi-BFS) ** 
+**Bi-directional BFS (Bi-BFS)** 
 
 In a standard BFS, algorithm starts from source and tries to reach to target location.  
 We can visualize this as a growing circle where at each level the circle grows bigger and bigger.  
