@@ -130,7 +130,87 @@ Directed graph (unweighted): Create a reverse copy of graph and explore similar 
 
 Practice Problem for Bi-BFS:
 Almost any problem you have solved with BFS you can try Bi-BFS.  
+Let's see an example
 https://leetcode.com/problems/word-ladder/  
+As you can see until forward AND backward queue are non-empty, I am doing a BFS run alternate forward and  backward.  
+After BFS run I try to find an intersection of visited set of both direction, If anything common is found , we know shortest path has been found and we return it.  
+Why -1 while return , because common node is found in both direction so we have subtract -1.
+```
+typedef enum  {
+    FORWARD=0,
+    BACKWARD,
+    MAX_DIR
+}DIR;
+class Solution {
+public:
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        
+        unordered_set<string> wordSet(wordList.begin(), wordList.end());
+        if( (wordSet.find(endWord)==wordSet.end()))
+            return 0;
+        
+        set<string> node_set[MAX_DIR];
+        queue<string> q[MAX_DIR];
+        
+        q[FORWARD].push(beginWord);
+        q[BACKWARD].push(endWord);
+        node_set[FORWARD].insert(beginWord);
+        node_set[BACKWARD].insert(endWord);
+        
+        auto find_common_node =[&](set<string>& out){
+            out.clear();
+            set_intersection(node_set[FORWARD].begin(), node_set[FORWARD].end(),node_set[BACKWARD].begin(),node_set[BACKWARD].end(), inserter(out, out.begin()));
+            return out;
+        };
+        
+        auto bfs = [&](bool direction){
+            int sz =q[direction].size();
+            for(int k =0; k< sz; ++k){
+               string node = q[direction].front();
+                q[direction].pop();
+                for(int i =0; i < node.size(); ++i){
+                    for(char j ='a' ; j<='z'; ++j){
+                        char old = node[i];
+                        node[i] = j;
+                        // new word should exist and unvisited
+                        if( (wordSet.find(node)!=wordSet.end()) and
+                           node_set[direction].find(node)==node_set[direction].end()
+                           )
+                        {
+                            node_set[direction].insert(node);
+                            q[direction].push(node);
+                        }
+                        node[i] = old;
+                    }
+                }
+            }
+        };
+        
+        set<string> out;
+        int forward_level =1;
+        int back_level =1;
+        while(!q[BACKWARD].empty() and !q[FORWARD].empty()){
+            
+            find_common_node(out);
+            if(out.size())
+                return forward_level + back_level -1;
+            
+            bfs(FORWARD);
+            ++forward_level;
+            
+            find_common_node(out);
+            if(out.size())
+                return forward_level + back_level -1;
+            
+            bfs(BACKWARD);
+            ++back_level;
+        }
+        
+        return 0;
+    }
+};
+```
+
 https://leetcode.com/problems/jump-game-iv/  
 https://leetcode.com/problems/open-the-lock/  
 https://leetcode.com/problems/shortest-bridge/  
