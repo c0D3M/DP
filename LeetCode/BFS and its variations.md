@@ -93,9 +93,47 @@ How example multiple target location are there and you have find nearest target 
 Real life example is multiple cities and some has police station, for each city find the nearest.  
 So in these kind of problem put all the source node(some time destination node) and then start the BFS , the moment we find a city from polic station, we know that's nearest surely.  
 
-https://leetcode.com/problems/walls-and-gates/
-https://leetcode.com/problems/as-far-from-land-as-possible/
-https://leetcode.com/problems/map-of-highest-peak/
+Example: https://leetcode.com/problems/walls-and-gates/  
+Initially we put all the gates in BFS queue and then start BFS.  
+The very first room we encounter from gate and that is unvisited is surely cheapest one.  
+So update the cost as 1 + current cell.  Thats all.  
+```
+#define MAX_DIR (4)
+class Solution {
+public:
+    void wallsAndGates(vector<vector<int>>& rooms) {
+        queue<pair<int, int>> q;
+        int m = rooms.size();
+        int n = rooms[0].size();
+        for(int i =0; i < m ; ++i){
+            for(int j =0; j < n ; ++j){
+                if(rooms[i][j]==0)
+                    q.push(make_pair(i, j));
+            }
+        }
+        int dir [MAX_DIR+1] = {-1, 0, 1, 0, -1 };
+        while(!q.empty()){
+            int sz = q.size();
+            for(int i =1; i <=sz; ++i){
+                int x = q.front().first;
+                int y = q.front().second;
+                q.pop();
+                for(int j =0; j < MAX_DIR; ++j){
+                    int n_x = x  + dir[j];
+                    int n_y = y  + dir[j+1];
+                    if(n_x >=0 and n_x <m and n_y >=0 and n_y < n and rooms[n_x][n_y]==INT_MAX){
+                        rooms[n_x][n_y] = 1 + rooms[x][y];
+                        q.push(make_pair(n_x, n_y));
+                    }
+                }
+            }
+        }
+    }
+};
+```
+
+https://leetcode.com/problems/as-far-from-land-as-possible/  
+https://leetcode.com/problems/map-of-highest-peak/  
 
 
 **BFS with bitmasking**  
