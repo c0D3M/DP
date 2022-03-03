@@ -214,8 +214,6 @@ https://leetcode.com/problems/jump-game-iv/
 https://leetcode.com/problems/open-the-lock/  
 https://leetcode.com/problems/shortest-bridge/  
 https://leetcode.com/problems/minimum-genetic-mutation/  
-https://leetcode.com/problems/escape-a-large-maze/  
-
 
 
 Reference: 
