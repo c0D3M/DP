@@ -3,7 +3,7 @@ Hello Everyone,
 BFS is a pretty standard algorithm but in some problem we have to teak it slightly to solve the problem.  
 In this post I have summarized all the different variants. Please let me know in comments if anything is missed.  
 
-**Standard BFS** 
+## Standard BFS
 
 This is pretty standard, we use a queue and add unexplored node at each level until queue is empty.  
 Why BFS always found shortest path:  
@@ -11,7 +11,7 @@ The very first time a node is discovered (unvisited node), its distance from the
 For example we have a root and it has 3 neighbors , root to those neigbors have distance 1 and the same idea applies recursively for all undiscovered node.  
 https://leetcode.com/problems/find-if-path-exists-in-graph/  
  
-**0-1 BFS**
+## 0-1 BFS
 
 In standard BFS we have used queue but in this kind of problem we are prefering one path i.e. nodes with cost/value 0 over other node with value 1.  
 So we use deque and if we get 0 we insert in front and if we get 1 we insert back.
@@ -86,7 +86,7 @@ public:
 Medium: https://leetcode.com/problems/shortest-bridge/  
 Hard: https://leetcode.com/problems/minimum-moves-to-move-a-box-to-their-target-location/  
 
-**Multi-source BFS**  
+## Multi-source BFS
 
 Generally we start BFS with a single source node and then traverse, in this class of problem we are given multiple source.
 How example multiple target location are there and you have find nearest target location from each node.  
@@ -136,7 +136,7 @@ https://leetcode.com/problems/as-far-from-land-as-possible/
 https://leetcode.com/problems/map-of-highest-peak/  
 
 
-**BFS with bitmasking**  
+## BFS with bitmasking
 Generally in BFS we maintain a visited array/set to not-visit nodes which are already visited.  
 In this class of problem, we can revisit the visited cell but this time when we visit we some new information (state).  
 So eah cell is marked visited with both  state + cell_id.  
@@ -211,7 +211,7 @@ public:
 
 Hard:  https://leetcode.com/problems/shortest-path-visiting-all-nodes/
 
-**Bi-directional BFS (Bi-BFS)** 
+## Bi-directional BFS (Bi-BFS)
 
 In a standard BFS, algorithm starts from source and tries to reach to target location.  
 We can visualize this as a growing circle where at each level the circle grows bigger and bigger.  
