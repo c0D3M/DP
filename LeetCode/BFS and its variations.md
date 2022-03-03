@@ -133,7 +133,9 @@ Let's see an example
 https://leetcode.com/problems/word-ladder/  
 As you can see until forward AND backward queue are non-empty, I am doing a BFS run alternate forward and  backward.  
 After BFS run I try to find an intersection of visited set of both direction, If anything common is found , we know shortest path has been found and we return sum of level's.  
-Why -1 while return , because common node is found in both direction so we have subtract -1.
+Why -1 while return , because common node is found in both direction so we have subtract -1.  
+Similar try https://leetcode.com/problems/word-ladder-ii/  
+
 ```
 typedef enum  {
     FORWARD=0,
@@ -209,12 +211,88 @@ public:
     }
 };
 ```
-
+https://leetcode.com/problems/minimum-genetic-mutation/  
+Same problem as above except number , just some minor tweaks
+```
+typedef enum  {
+    FORWARD=0,
+    BACKWARD,
+    MAX_DIR
+}DIR;
+class Solution {
+public:
+    int minMutation(string beginWord, string endWord, vector<string>& wordList) {
+        
+        unordered_set<string> wordSet(wordList.begin(), wordList.end());
+        if(wordSet.find(endWord)==wordSet.end())
+            return -1;
+        
+        set<string> node_set[MAX_DIR];
+        queue<string> q[MAX_DIR];
+        
+        q[FORWARD].push(beginWord);
+        q[BACKWARD].push(endWord);
+        node_set[FORWARD].insert(beginWord);
+        node_set[BACKWARD].insert(endWord);
+        
+        auto find_common_node =[&](set<string>& out){
+            out.clear();
+            set_intersection(node_set[FORWARD].begin(), node_set[FORWARD].end(),node_set[BACKWARD].begin(),node_set[BACKWARD].end(), inserter(out, out.begin()));
+            return out;
+        };
+        char mutation [] ={'A', 'C', 'G', 'T'};
+        auto bfs = [&](bool direction){
+            int sz =q[direction].size();
+            for(int k =0; k< sz; ++k){
+               string node = q[direction].front();
+                q[direction].pop();
+                for(int i =0; i < node.size(); ++i){
+                    for(int j =0; j < 4; ++j){
+                        char old = node[i];
+                        if(old==mutation[j])
+                            continue;
+                        node[i] = mutation[j];
+                        // new word should exist and unvisited
+                        if( (wordSet.find(node)!=wordSet.end()) and
+                           node_set[direction].find(node)==node_set[direction].end()
+                           )
+                        {
+                            node_set[direction].insert(node);
+                            q[direction].push(node);
+                        }
+                        node[i] = old;
+                    }
+                }
+            }
+        };
+        
+        set<string> out;
+        int forward_level =0;
+        int back_level =0;
+        while(!q[BACKWARD].empty() and !q[FORWARD].empty()){
+            
+            find_common_node(out);
+            if(out.size())
+                return forward_level + back_level ;
+            
+            bfs(FORWARD);
+            ++forward_level;
+            
+            find_common_node(out);
+            if(out.size())
+                return forward_level + back_level ;
+            
+            bfs(BACKWARD);
+            ++back_level;
+        }
+        
+        return -1;
+    }
+};
+```
 https://leetcode.com/problems/jump-game-iv/  
 https://leetcode.com/problems/open-the-lock/  
 https://leetcode.com/problems/shortest-bridge/  
-https://leetcode.com/problems/minimum-genetic-mutation/  
-
 
 Reference: 
 https://en.wikipedia.org/wiki/Bidirectional_search  
