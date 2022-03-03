@@ -18,10 +18,9 @@ So we use deque and if we get 0 we insert in front and if we get 1 we insert bac
 
 Following problems can be practiced for 0-1 BFS.
 
-Hard : https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/
-Medium: https://leetcode.com/problems/shortest-bridge/
-Hard: https://leetcode.com/problems/minimum-moves-to-move-a-box-to-their-target-location/
-
+Hard : https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/  
+Medium: https://leetcode.com/problems/shortest-bridge/  
+Hard: https://leetcode.com/problems/minimum-moves-to-move-a-box-to-their-target-location/  
 
 **Multi-source BFS**  
 
@@ -133,7 +132,7 @@ Almost any problem you have solved with BFS you can try Bi-BFS.
 Let's see an example
 https://leetcode.com/problems/word-ladder/  
 As you can see until forward AND backward queue are non-empty, I am doing a BFS run alternate forward and  backward.  
-After BFS run I try to find an intersection of visited set of both direction, If anything common is found , we know shortest path has been found and we return it.  
+After BFS run I try to find an intersection of visited set of both direction, If anything common is found , we know shortest path has been found and we return sum of level's.  
 Why -1 while return , because common node is found in both direction so we have subtract -1.
 ```
 typedef enum  {
