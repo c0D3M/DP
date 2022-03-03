@@ -18,7 +18,71 @@ So we use deque and if we get 0 we insert in front and if we get 1 we insert bac
 
 Following problems can be practiced for 0-1 BFS.
 
+
+Lets see the working with an example problem.  
 Hard : https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/  
+In this problem , at each cell, a direction is printed where you can with cost 0 and if you have to go other direction you have to change the direction and that would cost 1.  
+So we prefer those ne cell where the cost is 0 and push them to front of queue and other cell where we can reach with cost 1 is pushed back of queue.
+In addition to this , we also maintain a cost matrix, so during exploration we check if the find a cheaper path, we update.  
+
+```
+#define MAX_DIR 4
+class Solution {
+    // UP, RIGHT, DOWN, LEFT
+    int dir[MAX_DIR+1] = {-1, 0, 1, 0, -1};
+    
+    int getIndex(int i){
+        if(i==1) 
+            return 1;//RIGHT =1
+        else if(i==2) 
+            return 3;//LEFT = 3
+        else if(i==3) 
+            return 2; // DOWN = 2
+        return 0;// UP =0
+    }
+public:
+    int minCost(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        deque<pair<int, int>> d;
+        d.push_back(make_pair(0, 0));
+        vector<vector<int>> cost(m, vector<int>(n, INT_MAX));
+        cost[0][0] = 0;
+        while(!d.empty()){
+            int v = d.front().first;
+            int r = (d.front().second)/n;
+            int c = (d.front().second)%n;
+            d.pop_front();
+            int move_cost[MAX_DIR] = {1, 1, 1, 1}; // Initially we mark that all 4 neighbouring direction need 1 cost to go.  
+            move_cost[getIndex(grid[r][c])] = 0; // Then we check what is marking on this cell , and make that direction as 0.  
+            if(r==m-1 and c==n-1)
+                return cost[r][c];
+            for(int i=0; i<MAX_DIR; ++i){
+                int n_r = r + dir[i];
+                int n_c = c + dir[i+1];
+                if(n_r >=0 and n_r<m and 
+                   n_c >=0 and n_c<n and
+                   v < cost[n_r][n_c]
+                  )
+                {
+                    cost[n_r][n_c] = v; // update the cost
+                     if(move_cost[i])
+                     {
+                         cost[n_r][n_c]++; // Since an extra step of cost 1 is required because the direction is different.
+                         d.push_back(make_pair(cost[n_r][n_c], n_r*n+n_c));  // move cost is 1 so push back
+                     }
+                    else
+                        d.push_front(make_pair(cost[n_r][n_c], n_r*n+n_c)); // move cost is 0 we push to front of queue.  
+                }
+            }
+        }
+        
+        return 0;
+    }
+};
+```
+
+
 Medium: https://leetcode.com/problems/shortest-bridge/  
 Hard: https://leetcode.com/problems/minimum-moves-to-move-a-box-to-their-target-location/  
 
