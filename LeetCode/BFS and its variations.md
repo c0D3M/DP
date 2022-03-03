@@ -44,7 +44,7 @@ Sometime these problem can also be solved with DFS+Bitmasking + memoization.
 Example:
 Hard: https://leetcode.com/problems/shortest-path-to-get-all-keys/
 
-You start the BFS and dont just insert row,col in visited set, instead also insert how many keys have you collected so far, and while exploring neighbors check there mask also.  
+You start the BFS and dont just insert row,col in visited set, instead also insert how many keys have you collected so far, and while exploring neighbors check there mask also. When you revisit an already visited cell, we check how many key have this time, if it is different from the time we previously visited cell, this is a new state and should be explored.   
 BFS queue will have (row, col, mask ) for each entry.  
 ```
 #define MAX_DIR (4)
