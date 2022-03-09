@@ -84,7 +84,6 @@ public:
 
 
 Medium: https://leetcode.com/problems/shortest-bridge/  
-Hard: https://leetcode.com/problems/minimum-moves-to-move-a-box-to-their-target-location/  
 
 ## Multi-source BFS
 
