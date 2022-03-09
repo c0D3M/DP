@@ -1,7 +1,15 @@
 Hello Everyone,  
 
-BFS is a pretty standard algorithm but in some problem we have to teak it slightly to solve the problem.  
+BFS is a pretty standard algorithm but in some problem we have to tweak it slightly to solve the problem.  
 In this post I have summarized all the different variants. Please let me know in comments if anything is missed.  
+In this post we will learn.  
+- Standard BFS
+- 0-1 BFS
+- Multi-source BFS
+- BFS with Bitmasking
+- Bidirectional BFS
+
+
 
 ## Standard BFS
 
