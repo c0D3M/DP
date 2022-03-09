@@ -20,7 +20,80 @@ Following problems can be practiced for 0-1 BFS.
 
 
 Lets see the working with an example problem.  
-Hard : https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/  
+**Medium** : https://leetcode.com/problems/shortest-bridge/  
+Here We will first try to find 1st island and that is our priority, so those priority cell are pushed in front.  
+Next when we first get a '0' cell that surely means we are done finding our first island, so I will set a flag.  
+Next lets increment the cost and try to find first **unvisited 1**  because that surely would be second island and if we get we know we find our 2nd island and return cost.  
+Here i am using cost vector has dual purpose , first to record cost and second to find a unvisited set.  
+An unvisited cell will have surely INT_MAX cost.  
+
+Will show the working using a picture.  
+![image](https://user-images.githubusercontent.com/20656683/157424737-076ea66a-f5a2-49c3-987e-7685f76bfe1d.png)
+Orange Cell is first Island: during it processing we do get to see cell which has water , but we push them to back of queue and push 1 in front of queue.  
+Thats why all 1 of first island are orange color and processed first.  
+Next we process first blue cell i..e 0 , we know surely we are done with finding 1st island, and then aim is to find first 1 i..e green cell.  
+
+**Main difference**
+- Regular BFS we do level by level and hence we only traverse size of queue per level, in 0-1 BFS we dont do like that.  
+- We use a cost matrix, while in standard BFS its not the case.  
+
+
+```
+#define MAX_DIR (4)
+class Solution {
+    vector<vector<int>> cost;
+    deque<pair<int, int>> d;
+    int n;
+    void find_start(const vector<vector<int>>& grid){
+        for(int i =0; i <n ; ++i){
+            for(int j =0; j < n ; ++j)
+            {
+                if(grid[i][j]){
+                    d.push_back(make_pair(i, j));
+                    cost[i][j] = 0;
+                    return;
+                }
+            }
+        }
+    }
+public:
+    int shortestBridge(vector<vector<int>>& grid) {
+        n = grid.size();
+        cost.resize(n, vector<int>(n, INT_MAX));
+        find_start(grid);
+        bool first_island_found = false;
+        while(!d.empty()){
+            int x = d.front().first;
+            int y = d.front().second;
+            if(grid[x][y]==0) // that means we are done procesing first island
+                first_island_found = true; // now we are going to always see 
+            if(first_island_found and grid[x][y])
+                return cost[x][y];
+            d.pop_front();
+            int dir[MAX_DIR+1] = {-1, 0, 1, 0, -1};
+            for(int i =0; i<MAX_DIR; ++i){
+                int n_x = x + dir[i];
+                int n_y = y + dir[i+1];
+                if(n_x >=0 and n_x < n and n_y>=0 and n_y <n and cost[n_x][n_y]==INT_MAX){
+                    cost[n_x][n_y] = min(cost[n_x][n_y], cost[x][y]);
+                    if(grid[n_x][n_y]==0)
+                    {
+                        ++cost[n_x][n_y]; // since we have to flip
+                        d.push_back(make_pair(n_x, n_y));
+                    }
+                    else{
+                        d.push_front(make_pair(n_x, n_y));
+                    }
+                }
+            }
+            
+        }
+        return 0;
+    }
+};
+```
+
+**Hard** : https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/  
 In this problem , at each cell, a direction is printed where you can with cost 0 and if you have to go other direction you have to change the direction and that would cost 1.  
 So we prefer those ne cell where the cost is 0 and push them to front of queue and other cell where we can reach with cost 1 is pushed back of queue.
 In addition to this , we also maintain a cost matrix, so during exploration we check if the find a cheaper path, we update.  
@@ -81,9 +154,6 @@ public:
     }
 };
 ```
-
-
-Medium: https://leetcode.com/problems/shortest-bridge/  
 
 ## Multi-source BFS
 
