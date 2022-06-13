@@ -411,6 +411,39 @@ So whenever count is 0 , it mark the begining of an interval, also set a flag , 
         return ans;
 ```
 [1851. Minimum Interval to Include Each Query](https://leetcode.com/problems/minimum-interval-to-include-each-query/) [**Hard**]  
+There are possibly better ways to solve this but for explaining line sweep.  
+Each start and end (end+1 ) insert the size of interval. We will use set for each co-ordinate of line and the order would be
+insert/delete/query, for example so on an index , interval start, end and there is a query also.
+We will first add , then subtract and then do a query so that we have final result of minmum at the end.
+
+```
+       map<int, set<pair<int, int>>> line;
+        // 1 :  Entry  -1 : Exit , 2 : Query & size of interval
+        for(auto& i : intervals){
+            int size = i[1] -i[0] + 1;
+            line[i[0]].insert(make_pair(-1, size));
+            line[i[1]+1].insert(make_pair(1, size));
+        }
+        
+        for(int i =0; i < queries.size(); ++i){
+            line[queries[i]].insert(make_pair(2, i));
+        }
+        vector<int> ans(queries.size(), -1);
+        multiset<int> sizes;
+        for(auto& [x, intervals] :  line){
+            for(auto& i : intervals){
+                if(i.first==-1)
+                    sizes.insert(i.second);
+                else if (i.first==1)
+                    sizes.erase(sizes.lower_bound(i.second));
+                else if (i.first ==2 and !sizes.empty())
+                    ans[i.second] = *(sizes.begin());
+                
+            }
+            
+        }
+        return ans; 
+```
 	
 ### 2D Problem's ###  
 
