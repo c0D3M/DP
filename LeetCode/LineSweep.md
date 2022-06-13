@@ -280,16 +280,20 @@ Its a bit tough to come up Approach 1 for all problem but Approach 2 works for a
 [1674. Minimum Moves to Make Array Complementary](https://leetcode.com/problems/minimum-moves-to-make-array-complementary/) [ **Medium**]  
 
 ### 1D Hard problem ### 
-[732. My Calendar III](https://leetcode.com/problems/my-calendar-iii/) [**Hard** ]  
 [2158. Amount of New Area Painted Each Day](https://leetcode.com/problems/amount-of-new-area-painted-each-day/) [**Hard** ]  
-https://leetcode.com/problems/amount-of-new-area-painted-each-day/discuss/1740546/Simple-and-short-line-sweep
+https://leetcode.com/problems/amount-of-new-area-painted-each-day/discuss/1740546/Simple-and-short-line-sweep  
+
+[732. My Calendar III](https://leetcode.com/problems/my-calendar-iii/) [**Hard** ]  
 [2251. Number of Flowers in Full Bloom](https://leetcode.com/problems/number-of-flowers-in-full-bloom/) [ **Hard**]  
 [759. Employee Free Time](https://leetcode.com/problems/employee-free-time/) [**Hard**]  
-
+[1851. Minimum Interval to Include Each Query](https://leetcode.com/problems/minimum-interval-to-include-each-query/) [**Hard**]  
+	
 ### 2D Problem's ###  
-https://leetcode.com/tag/line-sweep/  
+
 https://leetcode.com/problems/perfect-rectangle/  
 https://leetcode.com/problems/the-skyline-problem/  
+https://leetcode.com/problems/rectangle-area-ii/
+Closest pair of points  
 
 Resources:
 http://39.107.250.150/alg/greedy/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98.html#%E5%8C%BA%E9%97%B4%E5%88%86%E7%BB%84
