@@ -446,10 +446,13 @@ We will first add , then subtract and then do a query so that we have final resu
 	
 ### 2D Problem's ###  
 
-https://leetcode.com/problems/perfect-rectangle/  
-https://leetcode.com/problems/the-skyline-problem/  
-https://leetcode.com/problems/rectangle-area-ii/
+[218. The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)  
+[391. Perfect Rectangle](https://leetcode.com/problems/perfect-rectangle/)  
+[850. Rectangle Area II]([https://leetcode.com/problems/rectangle-area-ii/)  
+
+Tow more problems which I couldn't found on LeetCode but without that line sweep is incomplete.  
 Closest pair of points  
+Lines Intersection
 
 Resources:
 http://39.107.250.150/alg/greedy/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98.html#%E5%8C%BA%E9%97%B4%E5%88%86%E7%BB%84
