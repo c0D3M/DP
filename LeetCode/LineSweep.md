@@ -280,9 +280,100 @@ Its a bit tough to come up Approach 1 for all problem but Approach 2 works for a
 [1674. Minimum Moves to Make Array Complementary](https://leetcode.com/problems/minimum-moves-to-make-array-complementary/) [ **Medium**]  
 
 ### 1D Hard problem ### 
-[2158. Amount of New Area Painted Each Day](https://leetcode.com/problems/amount-of-new-area-painted-each-day/) [**Hard** ]  
-https://leetcode.com/problems/amount-of-new-area-painted-each-day/discuss/1740546/Simple-and-short-line-sweep  
 
+These 1D Hard problem require scanning line for each input which can lead to O(n^2) algorithm.  
+We have to do something special to optimize it.  
+Lets see with an example.  
+
+[2158. Amount of New Area Painted Each Day](https://leetcode.com/problems/amount-of-new-area-painted-each-day/) [**Hard** ]  
+In this problem each day we paint some section of a line.  
+Brute force way is scan line for each input index.  
+
+Thanks to @cjcoax and @votrubac, I am putting both line sweep version and map interval method here.  
+  
+<table>
+<tr>
+<th> Using Line Sweep </th>
+<th> Using Vector Interval </th>
+</tr>
+<tr>
+<td>
+
+```c++
+    	auto cmp =[&](const vector<int>& a, const vector<int>& b){
+            return a[1]  < b[1];  
+        };
+        int maxEnd = (*max_element(paint.begin(), paint.end(), cmp))[1];
+        int n = paint.size();
+        vector<int> ans(n, 0);
+        vector<vector<pair<int, int>>> line(1 + maxEnd);
+        // We are marking on line that co-oridnate is 
+	// painted/not-painted(true-false) between which date
+        for(int i =0; i < n ; ++i){
+            line[paint[i][0]].push_back(make_pair(i, 1));
+            line[paint[i][1]].push_back(make_pair(i, 0));
+        }
+        
+        set<int> days;
+        //Scan the line
+        for(int i =0; i < maxEnd; ++i){
+            
+            // Who all present on this x co-ordinate?
+            for(auto& [day, state] : line[i]){
+                
+                if(state)
+                    days.insert(day);
+                else
+                    days.erase(day);
+            }
+            //Only the first guy can paint this line
+            if(!days.empty())
+                ans[*(days.begin())]++;
+        }
+        return ans;
+```
+
+</td>
+<td>
+
+```c++
+	map<int, int> m;
+    vector<int> res;
+    for (auto &p : pt) {
+        int l = p[0], r = p[1];
+        auto next = m.upper_bound(l), cur = next;
+        
+        // Step 1: suppose we have painted [1, 4] [ 5, 8] [10, 20]
+        // Now a new interval [4, 21] comes upper_bound gives [5,8]
+        // l = 4 then
+        if (cur != begin(m) && prev(cur)->second >= l) {
+            cur = prev(cur);
+            l = cur->second;
+        }
+        else 
+            cur = m.insert({l, r}).first;
+        int paint = r - l;
+        // Next since r= 21 and that is  > 5, that means this paint is going to span
+        // find how much shd we subtract :
+        // get min of (21, 8) =  8 and then subtratc with start 5 = 3
+        // now r shd be max of (21, 8) =21 , check further more intervals can be erased ?
+        // in the end set curr->second = max(curr->second, r);
+        while (next != end(m) && next->first < r) {
+            paint -= min(r, next->second) - next->first;
+            r = max(r, next->second);
+            m.erase(next++);
+        }
+        cur->second = max(cur->second, r);
+        res.push_back(max(0, paint));
+    }
+    return res;
+```
+</td>
+</tr>
+</table>
+
+	
+	
 [732. My Calendar III](https://leetcode.com/problems/my-calendar-iii/) [**Hard** ]  
 [2251. Number of Flowers in Full Bloom](https://leetcode.com/problems/number-of-flowers-in-full-bloom/) [ **Hard**]  
 [759. Employee Free Time](https://leetcode.com/problems/employee-free-time/) [**Hard**]  
