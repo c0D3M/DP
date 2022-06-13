@@ -290,6 +290,8 @@ In this problem each day we paint some section of a line.
 Brute force way is scan line for each input index.  
 
 Thanks to @cjcoax and @votrubac, I am putting both line sweep version and map interval method here.  
+Similar problem
+[2251. Number of Flowers in Full Bloom](https://leetcode.com/problems/number-of-flowers-in-full-bloom/) [ **Hard**]  
   
 <table>
 <tr>
@@ -375,8 +377,39 @@ Thanks to @cjcoax and @votrubac, I am putting both line sweep version and map in
 	
 	
 [732. My Calendar III](https://leetcode.com/problems/my-calendar-iii/) [**Hard** ]  
-[2251. Number of Flowers in Full Bloom](https://leetcode.com/problems/number-of-flowers-in-full-bloom/) [ **Hard**]  
+Same as  Meeting Room II as explained earlier.  
+
+
 [759. Employee Free Time](https://leetcode.com/problems/employee-free-time/) [**Hard**]  
+Same conepts, mark start and end time on line, when will everyone is free i.e. when count is 0.
+So whenever count is 0 , it mark the begining of an interval, also set a flag , so that after we non-zero from 0, we use that as closing interval.
+```
+	map<int, int> line;
+        for(auto& s : schedule){
+            for(auto& i :  s){
+                ++line[i.start];
+                --line[i.end];
+            }
+        }
+        
+        int count = 0;
+        bool found = false;
+        vector<Interval> ans;
+        for(auto&x : line){
+            count += x.second;
+            if(found){
+                ans.back().end = x.first;
+                found = false;
+            }
+            if(count == 0){
+                // mark begining of new interval
+                ans.push_back(Interval(x.first, -1));
+                found = true;
+            }
+        }
+        ans.pop_back();
+        return ans;
+```
 [1851. Minimum Interval to Include Each Query](https://leetcode.com/problems/minimum-interval-to-include-each-query/) [**Hard**]  
 	
 ### 2D Problem's ###  
