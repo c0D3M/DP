@@ -1,13 +1,12 @@
 Line Sweep Algorithms
 -------------------------
 Conept: Think it as an imaginary line (vertical or horizontal) when swept across that axis, some points would enter and some exit.
-An observation to see is that since point (x or y co-ordinate) would occur in increasing order , we have to use some ordered dats structure like set/map or even arrays.
+An observation to see is that since point (x or y co-ordinate) would occur in increasing order , we have to use some ordered data structure like set/map or even arrays.
 
-Lets see with an easy example:
-This is going to be a long post, so lets divide in 3 parts
-1. 1D Easy/Medium problem  
-2. 1D Hard  
-3. 2D problems  
+This is going to be a long post, so I have divided into 3 parts.  
+1. 1D Easy/Medium problem.  
+2. 1D Hard.  
+3. 2D geometric problems.  
 
 ### 1D Easy/Medium problem ###   
 [1854. Maximum Population Year](https://leetcode.com/problems/maximum-population-year/) [**Easy**]  
