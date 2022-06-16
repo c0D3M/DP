@@ -533,7 +533,7 @@ On Similar lines to above problem, two point to note.
 ![image](https://user-images.githubusercontent.com/20656683/174115644-e4b581d0-dacd-479f-b9c8-5a13f060950e.png)
 
 Point to be noted that **new rectangle higher y-cordinate should be lower than equal to existing active rectangles** ( new rectangle is beneath)  or  
-	** new rectangle lower y-cordinate should be greater than equal to to existing active rectangles** ( new rectangle is upper).  
+**new rectangle lower y-cordinate should be greater than equal to to existing active rectangles** ( new rectangle is upper).  
 	
 	
 2. **Sum of Height of the active rectangle** should always be exactly (ymax-ymin) else there would be hole and it wont be exact cover.  
@@ -542,6 +542,7 @@ Point to be noted that **new rectangle higher y-cordinate should be lower than e
 
 Here ymax is 3 and ymin is 0 , so everytime y height sum should be exactly 3 only then we would have exact cover.  
 But in above example, sum of both y height is 2 and 2!=3 and hence return false.  
+Thanks @wddd for his solution https://leetcode.com/problems/perfect-rectangle/discuss/87188/on-log-n-sweep-line-solution  
 	
 	
 [218. The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)  
