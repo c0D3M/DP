@@ -520,8 +520,29 @@ Lets see this with an example.
         return area;
     }
 ```	
-
+Time Complexity would be O(n^2 log (n)) since for every x event we are trying to calculate the y sum which is 1D line sweep using multiset  
+	and takes O(n log n)  
+	
 [391. Perfect Rectangle](https://leetcode.com/problems/perfect-rectangle/)  
+
+On Similar lines to above problem, two point to note.
+1. Here we have to calculate exact cover which means, two rectangle cant intersect, lets understand this with an image.
+	
+![image](https://user-images.githubusercontent.com/20656683/174115549-d6ade836-d27c-407c-8731-9d10481df2ab.png)
+![image](https://user-images.githubusercontent.com/20656683/174115717-12eacdd8-726a-405b-bd91-d84b5c4434cc.png)
+![image](https://user-images.githubusercontent.com/20656683/174115644-e4b581d0-dacd-479f-b9c8-5a13f060950e.png)
+
+Point to be noted that **new rectangle higher y-cordinate should be lower than equal to existing active rectangles** ( new rectangle is beneath)  or  
+	** new rectangle lower y-cordinate should be greater than equal to to existing active rectangles** ( new rectangle is upper).  
+	
+	
+2. **Sum of Height of the active rectangle** should always be exactly (ymax-ymin) else there would be hole and it wont be exact cover.  
+	
+![image](https://user-images.githubusercontent.com/20656683/174116557-64e7fd04-40e1-48ad-b92b-79f8a8849332.png)
+
+Here ymax is 3 and ymin is 0 , so everytime y height sum should be exactly 3 only then we would have exact cover.  
+But in above example, sum of both y height is 2 and 2!=3 and hence return false.  
+	
 	
 [218. The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)  
 
