@@ -547,11 +547,11 @@ Thanks @wddd for his solution https://leetcode.com/problems/perfect-rectangle/di
 [218. The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)  
 
 
-
-Tow more problems which I couldn't found on LeetCode but without that line sweep is incomplete.  
-Closest pair of points  
-Lines Intersection
-
-Resources:
-http://39.107.250.150/alg/greedy/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98.html#%E5%8C%BA%E9%97%B4%E5%88%86%E7%BB%84
+Two more problems which I couldn't found on LeetCode(if its avaialable on Leetcode, please let me know and will update the post) but without that line sweep is incomplete.  
+- Closest pair of points  
+- Lines Intersection
+Finding orientation of new co-ordinate, this is useful in convex hull problem See [587. Erect the Fence](https://leetcode.com/problems/erect-the-fence/).  
+Finding intersection of two lines.  	
+	
+Resources:  
 https://www.topcoder.com/thrive/articles/Line%20Sweep%20Algorithms
