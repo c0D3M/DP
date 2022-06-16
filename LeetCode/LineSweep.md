@@ -446,9 +446,86 @@ We will first add , then subtract and then do a query so that we have final resu
 	
 ### 2D Problem's ###  
 
-[218. The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)  
+2D problems are slightly tricky as there extra dimension have to be tracked.  
+Lets see this with an example.  
+[850. Rectangle Area II](https://leetcode.com/problems/rectangle-area-ii/)  
+
+1. For each rectangle, first vertical line indicate rectangle is starting and second line indicates rectangle end.  
+   So stores these events on x-axis, we need information line y_start, y_end and whether its a start event or end event.  
+   **Sort these events on x-axis, if 2 rectangle start at same time, start event take precendence over end event**.  
+   One of the test case has just straight line instead of rectangle.  
+
+2. Once we sweep the vertical line, we can get the width between two co-ordinate.  
+
+3. To get the height, we need to sum up the y-ordinate along the y-axis, which is a simple 1D problem as we did earlier.
+   For example if we have the following intervals on yaxis  [0,1] [0,2] [0, 3]  
+   Total y length excluding duplicate is 3.   	
+    Use the above 1D trick to solve this.
+	
+```
+	int rectangleArea(vector<vector<int>>& rectangles) {
+        
+        vector<vector<int>> events;
+        
+        for(auto& r : rectangles){
+            // x-cordinate, event_type(0 is open and 1 is close, y1, y2
+            events.push_back({r[0], 0, r[1], r[3]});
+            events.push_back({r[2], 1, r[1], r[3]});
+        }
+     
+        auto cmp =[&](const vector<int>& a , const vector<int>& b){
+            if(a[0]==b[0])
+                return a[1] < b[1];
+            return a[0] < b[0];
+        };
+        sort(events.begin(), events.end(), cmp);
+        int area =0;
+        int prev = INT_MIN; // sweep line is coming from far off
+        multiset<pair<int, int>> yline; // y co-ordinate and whether entry or exit
+        const int MOD = 1e9+7;
+        // 1 -D line sweep
+        auto get_area = [&](const int x){
+            long long area = 0;
+            long long prev = INT_MIN;
+            int s =0;
+            for(auto& y : yline){
+                s += y.second;
+                if(s==y.second) // mark the begining
+                    prev = y.first;
+                
+                if(s==0)
+                    area += (((y.first - prev)%MOD)* x)%MOD;
+              
+            }
+            return area;
+        };
+        for(auto& e : events){
+            // First calculate area
+            if(prev!=INT_MIN)
+                area  = (area + get_area(e[0] - prev))%MOD;
+            
+            if(e[1])
+            {
+                // delete both y co-ordinate
+                yline.erase(yline.find(make_pair(e[2], 1)));
+                yline.erase(yline.find(make_pair(e[3], -1)));
+            }
+            else{
+                // insert both y co-ordinate of vertical line.
+                yline.insert(make_pair(e[2], 1)); // Entry
+                yline.insert(make_pair(e[3], -1)); // Exit
+            }
+            prev = e[0];    
+        }
+        return area;
+    }
+```	
+
 [391. Perfect Rectangle](https://leetcode.com/problems/perfect-rectangle/)  
-[850. Rectangle Area II]([https://leetcode.com/problems/rectangle-area-ii/)  
+	
+[218. The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)  
+
+
 
 Tow more problems which I couldn't found on LeetCode but without that line sweep is incomplete.  
 Closest pair of points  
