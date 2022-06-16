@@ -550,8 +550,10 @@ Thanks @wddd for his solution https://leetcode.com/problems/perfect-rectangle/di
 Two more problems which I couldn't found on LeetCode(if its avaialable on Leetcode, please let me know and will update the post) but without that line sweep is incomplete.  
 - Closest pair of points  
 - Lines Intersection
-Finding orientation of new co-ordinate, this is useful in convex hull problem See [587. Erect the Fence](https://leetcode.com/problems/erect-the-fence/).  
-Finding intersection of two lines.  	
+
+**Geometric Concepts**
+- Finding orientation of new co-ordinate, this is useful in convex hull problem See [587. Erect the Fence](https://leetcode.com/problems/erect-the-fence/).  
+- Finding intersection of two lines.  	
 	
 Resources:  
 https://www.topcoder.com/thrive/articles/Line%20Sweep%20Algorithms
