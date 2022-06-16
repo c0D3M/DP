@@ -532,8 +532,7 @@ On Similar lines to above problem, two point to note.
 ![image](https://user-images.githubusercontent.com/20656683/174115717-12eacdd8-726a-405b-bd91-d84b5c4434cc.png)
 ![image](https://user-images.githubusercontent.com/20656683/174115644-e4b581d0-dacd-479f-b9c8-5a13f060950e.png)
 
-Point to be noted that **new rectangle higher y-cordinate should be lower than equal to existing active rectangles** ( new rectangle is beneath)  or  
-**new rectangle lower y-cordinate should be greater than equal to to existing active rectangles** ( new rectangle is upper).  
+Point to be noted that **new rectangle higher y-cordinate should be lower than equal to existing active rectangles** ( new rectangle is beneath)  or **new rectangle lower y-cordinate should be greater than equal to to existing active rectangles** ( new rectangle is above).  
 	
 	
 2. **Sum of Height of the active rectangle** should always be exactly (ymax-ymin) else there would be hole and it wont be exact cover.  
