@@ -546,6 +546,49 @@ Thanks @wddd for his solution https://leetcode.com/problems/perfect-rectangle/di
 	
 [218. The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)  
 
+- Why do we use **priority-queue(min-heap)**: Reason is we have to take decision whether to add skyline contour or not at the given x-cordinate.  
+So we try to pull out **all** the events for a given x , insert/delete as per event type and then decide whether to make contour or not.  
+
+- Why do we use multiset : Because multiple box of same height exist, if one box is removed that doesnt mean other box can be removed, hence multiset.  
+
+Logic: Before inserting height into multiset we note the maximum height available (thats why i used negative number in multiset).  
+After processing of all events for a given x co-ordinate, check if the height changed ? if yes we have a contout here, otherwise skip.
+	
+```
+class Solution {
+public:
+    vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
+        vector<vector<int>> ans;
+        multiset<int> height;
+        
+        priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> line; // min-heap
+        for(auto& b : buildings){
+            line.push({b[0], 0, b[2]});
+            line.push({b[1], 1, b[2]});
+        }
+        while(!line.empty()){
+            int before = height.empty() ? 0 : -*(begin(height));
+            int x;
+            do{
+                x = line.top()[0];
+                int event = line.top()[1];
+                int yheight = line.top()[2];
+                line.pop();    
+                if(event)
+                    height.erase(height.find(-yheight));
+                else
+                    height.insert(-yheight);
+            }while(!line.empty() and line.top()[0] == x);
+            
+            int after = height.empty() ? 0 : -*(begin(height));
+            
+            if(after != before)
+                ans.push_back({x, after});
+        }
+        return ans;
+    }
+};	
+```	
 
 Two more problems which I couldn't found on LeetCode(if its avaialable on Leetcode, please let me know and will update the post) but without that line sweep is incomplete.  
 - Closest pair of points  
