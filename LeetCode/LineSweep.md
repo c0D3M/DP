@@ -8,6 +8,11 @@ This is going to be a long post, so I have divided into 3 parts.
 2. 1D Hard.  
 3. 2D geometric problems.  
 
+There could be errors, please post in comments.  
+Also suggest any good problem to be added to this list.  
+Inviting @votrubac @lee215 to give suggestion for improvmenet.  
+
+
 ### 1D Easy/Medium problem ###   
 [1854. Maximum Population Year](https://leetcode.com/problems/maximum-population-year/) [**Easy**]  
 Here we are given birth & death year of persons.
