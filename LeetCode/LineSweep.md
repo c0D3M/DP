@@ -591,6 +591,10 @@ public:
 ```	
 If you noticed in all above 3 problem, template remain same.  
 1. Store the events in either priority queue or vector in sorted manner of x-axis.  
+   priority queue approach has an advantage of not worrying whether to keep entry event first or exit event first becauase your are popping out
+   all events for same x-cordinate in one go and then deciding what to be done but if you use vector to store the interval and use custom comparator,
+   you have to be careful about whether to add exit event first or entry event first because we pull event one by one.   
+   See Skyline problem for priroity queue approach and Rectangle Area II for vector appraoch.   	
 2. Use multiset of process of y-axis. This multiset can store either line or rectangle, depending on what problem is asking for.  
 	
 Two more problems which I couldn't found on LeetCode(if its avaialable here, please let me know and will update the post) but without that line sweep is incomplete.  
