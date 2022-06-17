@@ -1,7 +1,7 @@
 Line Sweep Algorithms
 -------------------------
-Conept: Think it as an imaginary line (vertical or horizontal) when swept across that axis, some points would enter and some exit.
-An observation to see is that since point (x or y co-ordinate) would occur in increasing order , we have to use some ordered data structure like set/map or even arrays.
+Line Sweep (or Sweep Line) is an algorithmic technique where we sweep an imaginary line (x or y axis) and solve various problem. 
+There would be an event (entry or event) and based on that we update the information and then return result.   
 
 This is going to be a long post, so I have divided into 3 parts.  
 1. 1D Easy/Medium problem.  
@@ -589,14 +589,20 @@ public:
     }
 };	
 ```	
-
-Two more problems which I couldn't found on LeetCode(if its avaialable on Leetcode, please let me know and will update the post) but without that line sweep is incomplete.  
-- Closest pair of points  
-- Lines Intersection
+If you noticed in all above 3 problem, template remain same.  
+1. Store the events in either priority queue or vector in sorted manner of x-axis.  
+2. Use multiset of process of y-axis. This multiset can store either line or rectangle, depending on what problem is asking for.  
+	
+Two more problems which I couldn't found on LeetCode(if its avaialable here, please let me know and will update the post) but without that line sweep is incomplete.  
+- Closest pair of points.  
+- Lines Intersection.
 
 **Geometric Concepts**
 - Finding orientation of new co-ordinate, this is useful in convex hull problem See [587. Erect the Fence](https://leetcode.com/problems/erect-the-fence/).  
 - Finding intersection of two lines.  	
+	
+@Leetcode , may be add few of the problems from here to leetcode tagged line sweep problem, which currently has just 4 of them.  
+https://leetcode.com/tag/line-sweep/  
 	
 Resources:  
 https://www.topcoder.com/thrive/articles/Line%20Sweep%20Algorithms
