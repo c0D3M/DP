@@ -14,3 +14,12 @@ These are like intervals are given like max profit on job scheduling for non-ove
 So here also, start from end where we know something i.e. if all interval are exhausted profit is 0.  
 Now to get next index we have to find next index which instead of +1 do a upper_bound because next index can start after ith interval end.  
 
+#### Day 3 
+
+Number of hanshake: This is like fibonacci calls kind of question, f(n) = f(n-1) + f(n-2), we have to count number of ways of handshake,  
+keep 2 hands fixed and then left half and right half can range between [0, 2, ...i-2]  
+
+1478. Allocate Mailboxes : Top Down is easy.  
+For bottom up , point to remember is outer loop is of k so that we can solve small problem.  
+And then we loop for each index.  
+For base case when k=0 (i.e. just 1 post), that case dist[0][i] is the distance.  
