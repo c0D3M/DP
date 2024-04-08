@@ -1,3 +1,34 @@
+**Bottom up approach for Stone Game**
+```
+class Solution{
+
+    public:
+    long long maximumAmount(int n, int p[]){
+        // Your code here
+        
+        vector<vector<long long>> dp(n , vector<long long> (n, 0));
+        for(int gap=0; gap < n ; ++gap){
+            for(int i=0, j = gap; j < n ; ++j, ++i){
+                
+                // [i, j] is the interval
+                // if me choose i and he choose i+1
+                int x = i+2 <=j ? dp[i+2][j] : 0;
+                // if me choose i and he choose j , i am left with i+1, j-1
+                int y =  i+1 <=j-1 ? dp[i+1][j-1] : 0;
+                // if me choose j , and he choose i, i am left with i+1, j-1 , above y is enough
+                // if me choose j and he choose j-1, i am left with i, j-2
+                int z = i <= j-2 ? dp[i][j-2] : 0;
+                // why min , coz we want opponent to choose min
+                dp[i][j] = max(p[i] + min(x, y), p[j]+min(y, z));
+                
+            }
+        }
+        return dp[0][n-1];
+        
+    }
+};
+```
+
 **1563. Stone Game V**
 Objective of the game is to sub-divide the array into 2 halves and then throw the half whose sum is higher.  
 Recurisvely keep doing this until there is just 1 row left.  
